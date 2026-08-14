@@ -114,7 +114,10 @@ body {
 }
 
 /* ── 카피 블록 ───────────────────────────── */
-.copy { position: relative; z-index: 2; margin-top: 0; }
+/* 상단 블록 높이 고정.
+   장마다 카피 길이가 달라도 목업 시작 Y가 동일해야 세트로 보입니다.
+   헤드라인 1줄(86) + 간격(18) + 서브 1줄(47) = 151 → 156 고정 */
+.copy { position: relative; z-index: 2; margin-top: 0; height: 160px; }
 .eyebrow {
   display: inline-block;
   font-size: 15px;
@@ -128,7 +131,8 @@ body {
   margin-bottom: 20px;
 }
 h1 {
-  font-size: 66px;
+  text-align: center;
+  font-size: 72px;
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -.035em;
@@ -137,7 +141,8 @@ h1 {
 }
 h1 em { font-style: normal; color: #6b5433; }
 .sub {
-  margin-top: 18px;
+  margin-top: 22px;
+  text-align: center;
   font-size: 31px;
   font-weight: 500;
   line-height: 1.52;
@@ -279,7 +284,7 @@ h1 em { font-style: normal; color: #6b5433; }
 /* ── 자동 맞춤 컨테이너 ─────────────────────
    비주얼(목업/그래프/패널)을 남은 세로 공간에 꽉 차게 스케일.
    JS(fit())가 zoom과 width를 계산해 넣습니다. */
-.fit { position: relative; z-index: 2; margin-top: 34px; }
+.fit { position: relative; z-index: 2; margin-top: 62px; }
 .fit > * { margin: 0 auto; }
 
 /* 스택 렌더용: 5장을 세로로 쌓아 한 번에 촬영 후 크롭 */
@@ -328,7 +333,7 @@ html.preview .pvlabel {
 .slide.inverted .sub { color: #bfae97; }
 
 /* 그래프를 좌우로 꽉 채움 */
-.slide.inverted .fit { margin-top: 30px; }
+.slide.inverted .fit { margin-top: 62px; }
 .gfull { width: 1600px; margin-left: -86px; }
 .gfull svg { display: block; width: 100%; height: auto; }
 

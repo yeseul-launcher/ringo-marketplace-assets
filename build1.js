@@ -62,7 +62,7 @@ const msg = (avatar, name, time, body, badge) => `
 const SLIDES = [
   /* 01 · 선제성 */
   {
-    h1: '팀의 AI가 <em>먼저 말을 걸어요.</em>',
+    h1: '팀의 AI가 <em>먼저 말을 걸어요</em>',
     sub: '아무도 묻지 않았는데, Ringo가 먼저 꺼냈습니다.',
     win: {
       ch: 'product', meta: '멤버 14명', faces: ['yujin','sam','elena','seoyeon'], more: 10,
@@ -75,7 +75,7 @@ const SLIDES = [
            <div class="atitle">결정 · 가격</div>
            <div class="aline">#product · 6월 9일</div>
            <div class="aquote">“월간 + 연간 둘 다 유지. 연간 전용은 테스트에서 SMB 체험 4건을 잃었음.”</div>
-           <div class="afoot">Sam · 당시 👍 6</div>
+           <div class="afoot">Sam이 정리 · 팀원 6명이 동의했어요</div>
          </div>
          <div class="rx"><span class="on">🙌 5</span><span>👀 3</span></div>`, true)}`,
       composer: '#product에 메시지 보내기'
@@ -84,15 +84,15 @@ const SLIDES = [
 
   /* 02 · 공유 기억 */
   {
-    h1: '팀 전체가 함께 쓰는 <em>하나의 두뇌.</em>',
-    sub: '50개의 개인 기록이 아니라, 팀이 함께 쓰는 하나의 기억.',
+    h1: '팀 전체가 함께 쓰는 <em>하나의 두뇌</em>',
+    sub: '50개의 개인 기록이 아니라, 하나의 공유 기억.',
     custom: 'graph', inverted: true
   },
 
   /* 03 · 실행 */
   {
-    h1: '답만 하지 않아요. <em>일을 끝냅니다.</em>',
-    sub: '원인을 찾고 수정본까지 올려둡니다. 머지만 결정하세요.',
+    h1: '답만 하지 않아요, <em>일을 끝냅니다</em>',
+    sub: '원인을 찾고 수정본까지 올려둡니다.',
     win: {
       ch: 'eng-alerts', meta: '멤버 9명', faces: ['dohyun','sam','jimin'], more: 6,
       body: `
@@ -111,8 +111,8 @@ const SLIDES = [
 
   /* 04 · 자동화 */
   {
-    h1: '매달 반복되는 일, <em>이제 맡기세요.</em>',
-    sub: '처리하고 끝이 아니라, 다음 달 자동 실행까지 제안합니다.',
+    h1: '매달 반복되는 일, <em>이제 맡기세요</em>',
+    sub: '다음 달 자동 실행까지 먼저 제안합니다.',
     win: {
       ch: 'finance', meta: '멤버 6명', faces: ['jimin','elena','yujin'], more: 4,
       body: `
@@ -132,7 +132,7 @@ const SLIDES = [
 
   /* 05 · 주도권 & 보안 */
   {
-    h1: '경계는 팀이 정하고, <em>Ringo는 그 안에서만.</em>',
+    h1: '경계도 권한도 <em>팀이 정합니다</em>',
     sub: '연결한 소스만 읽고, 프로젝트별로 분리해 보관합니다.',
     custom: 'perms'
   }
@@ -146,66 +146,68 @@ const PEOPLE = ['yujin', 'dohyun', 'jimin', 'seoyeon'];
    왼쪽은 사람마다 분리된 기억, 오른쪽은 하나로 모이는 공유 기억. */
 /* 02 비주얼: "각자 따로 vs 하나를 함께" 대비.
    요소를 키우고 세로 공간을 끝까지 써서 여백이 뜨지 않게 배치. */
-const LX = [190, 330, 470, 610];      // 왼쪽 인물 x
-const RX = [990, 1130, 1270, 1410];   // 오른쪽 인물 x
-const AY = 196, AR = 46;              // 인물 y / 반지름
+const LX = [167, 322, 477, 632];      // 왼쪽 인물 x (중심 400)
+const RX = [968, 1123, 1278, 1433];   // 오른쪽 인물 x (중심 1200)
+const AY = 232, AR = 56;              // 인물 y / 반지름
 
+/* 02 비주얼: 각자 따로 vs 하나를 함께.
+   상단 카피 블록이 156px로 고정되면서 확보된 세로를 요소 확대에 씁니다. */
 const GRAPH_SVG = `
-      <svg viewBox="0 0 1600 620" width="1600" height="620">
+      <svg viewBox="0 0 1600 700" width="1600" height="700">
         <defs>
           <linearGradient id="goldb" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#f4e9d4"/><stop offset="100%" stop-color="#d8bf96"/>
           </linearGradient>
           <filter id="softglow" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="20" result="b"/>
+            <feGaussianBlur stdDeviation="22" result="b"/>
             <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
         </defs>
 
-        <line x1="800" y1="40" x2="800" y2="580" stroke="#6b5c48"
-              stroke-width="1.5" stroke-dasharray="7 10" opacity=".45"/>
+        <line x1="800" y1="44" x2="800" y2="656" stroke="#6b5c48"
+              stroke-width="1.6" stroke-dasharray="8 11" opacity=".45"/>
 
-        <!-- ── 왼쪽: 다른 AI 도구 ── -->
-        <text x="400" y="62" text-anchor="middle"
-              style="font:700 30px Pretendard,sans-serif;fill:#9b8d7c;letter-spacing:-.02em">다른 AI 도구</text>
+        <!-- 왼쪽: 다른 AI 도구 -->
+        <text x="400" y="70" text-anchor="middle"
+              style="font:700 34px Pretendard,sans-serif;fill:#9b8d7c;letter-spacing:-.02em">다른 AI 도구</text>
         ${LX.map((x, i) => `
         <clipPath id="cl${i}"><circle cx="${x}" cy="${AY}" r="${AR}"/></clipPath>
         <image href="avatars/${PEOPLE[i]}.png" x="${x - AR}" y="${AY - AR}"
                width="${AR * 2}" height="${AR * 2}" clip-path="url(#cl${i})"
                style="filter:grayscale(.8) brightness(.55)"/>
-        <circle cx="${x}" cy="${AY}" r="${AR}" fill="none" stroke="#5d5244" stroke-width="2.5"/>
-        <line x1="${x}" y1="${AY + AR + 6}" x2="${x}" y2="330" stroke="#5d5244" stroke-width="2" opacity=".75"/>
-        <rect x="${x - 60}" y="330" width="120" height="132" rx="18"
-              fill="#2f2921" stroke="#544838" stroke-width="1.8"/>
-        ${[0, 1, 2, 3].map(k => `<rect x="${x - 38}" y="${358 + k * 24}" width="${[76, 58, 68, 46][k]}" height="8" rx="4" fill="#5d5244"/>`).join('')}
+        <circle cx="${x}" cy="${AY}" r="${AR}" fill="none" stroke="#5d5244" stroke-width="3"/>
+        <line x1="${x}" y1="${AY + AR + 8}" x2="${x}" y2="382" stroke="#5d5244" stroke-width="2.4" opacity=".75"/>
+        <rect x="${x - 70}" y="382" width="140" height="152" rx="20"
+              fill="#2f2921" stroke="#544838" stroke-width="2"/>
+        ${[0, 1, 2, 3].map(k => `<rect x="${x - 44}" y="${414 + k * 28}" width="${[88, 66, 78, 54][k]}" height="9" rx="4.5" fill="#5d5244"/>`).join('')}
         `).join('')}
-        <text x="400" y="524" text-anchor="middle"
-              style="font:700 27px Pretendard,sans-serif;fill:#8d8071;letter-spacing:-.025em">각자의 기억 4개</text>
-        <text x="400" y="566" text-anchor="middle"
-              style="font:500 23px Pretendard,sans-serif;fill:#6f6558;letter-spacing:-.025em">서로 뭘 아는지 모릅니다</text>
+        <text x="400" y="600" text-anchor="middle"
+              style="font:700 31px Pretendard,sans-serif;fill:#8d8071;letter-spacing:-.025em">각자의 기억 4개</text>
+        <text x="400" y="646" text-anchor="middle"
+              style="font:500 26px Pretendard,sans-serif;fill:#6f6558;letter-spacing:-.025em">서로 뭘 아는지 모릅니다</text>
 
-        <!-- ── 오른쪽: Ringo ── -->
-        <text x="1200" y="62" text-anchor="middle"
-              style="font:700 30px Pretendard,sans-serif;fill:#e8d3ad;letter-spacing:-.02em">Ringo</text>
+        <!-- 오른쪽: Ringo -->
+        <text x="1200" y="70" text-anchor="middle"
+              style="font:700 34px Pretendard,sans-serif;fill:#e8d3ad;letter-spacing:-.02em">Ringo</text>
         ${RX.map((x, i) => `
-        <path d="M${x} ${AY + AR + 6} C ${x} 292, ${1200 + (x - 1200) * 0.22} 300, ${1200 + (x - 1200) * 0.34} 336"
-              stroke="#c9b28f" stroke-width="3" fill="none" opacity=".92"/>
+        <path d="M${x} ${AY + AR + 8} C ${x} 340, ${1200 + (x - 1200) * 0.22} 350, ${1200 + (x - 1200) * 0.34} 388"
+              stroke="#c9b28f" stroke-width="3.4" fill="none" opacity=".92"/>
         <clipPath id="cr${i}"><circle cx="${x}" cy="${AY}" r="${AR}"/></clipPath>
         <image href="avatars/${PEOPLE[i]}.png" x="${x - AR}" y="${AY - AR}"
                width="${AR * 2}" height="${AR * 2}" clip-path="url(#cr${i})"/>
-        <circle cx="${x}" cy="${AY}" r="${AR}" fill="none" stroke="#f3e9d6" stroke-width="3"/>
+        <circle cx="${x}" cy="${AY}" r="${AR}" fill="none" stroke="#f3e9d6" stroke-width="3.5"/>
         `).join('')}
         <g filter="url(#softglow)">
-          <rect x="940" y="336" width="520" height="126" rx="24" fill="url(#goldb)"/>
+          <rect x="900" y="388" width="600" height="146" rx="28" fill="url(#goldb)"/>
         </g>
-        <text x="1200" y="382" text-anchor="middle"
-              style="font:800 18px Pretendard,sans-serif;fill:#6b5433;letter-spacing:.16em">공유 기억</text>
-        <text x="1200" y="428" text-anchor="middle"
-              style="font:800 36px Pretendard,sans-serif;fill:#2a2016;letter-spacing:-.03em">하나의 두뇌</text>
-        <text x="1200" y="524" text-anchor="middle"
-              style="font:700 27px Pretendard,sans-serif;fill:#e2ceac;letter-spacing:-.025em">팀이 함께 쓰는 기억 1개</text>
-        <text x="1200" y="566" text-anchor="middle"
-              style="font:500 23px Pretendard,sans-serif;fill:#b8a68c;letter-spacing:-.025em">누가 물어도 같은 맥락으로 답합니다</text>
+        <text x="1200" y="440" text-anchor="middle"
+              style="font:800 20px Pretendard,sans-serif;fill:#6b5433;letter-spacing:.16em">공유 기억</text>
+        <text x="1200" y="494" text-anchor="middle"
+              style="font:800 42px Pretendard,sans-serif;fill:#2a2016;letter-spacing:-.03em">하나의 두뇌</text>
+        <text x="1200" y="600" text-anchor="middle"
+              style="font:700 31px Pretendard,sans-serif;fill:#e2ceac;letter-spacing:-.025em">팀이 함께 쓰는 하나의 기억</text>
+        <text x="1200" y="646" text-anchor="middle"
+              style="font:500 26px Pretendard,sans-serif;fill:#b8a68c;letter-spacing:-.025em">누가 물어도 같은 맥락으로 답합니다</text>
       </svg>`;
 
 const GRAPH = `<div class="gfull">${GRAPH_SVG}</div>`;
@@ -213,6 +215,7 @@ const GRAPH = `<div class="gfull">${GRAPH_SVG}</div>`;
 /* ── 05 권한 패널 ────────────────────────────────── */
 const CHANNELS = [
   ['product', '제품 논의 · 결정 기록', 1],
+  ['growth', '지표 · 실험 결과', 1],
   ['eng-alerts', '장애 · 배포 알림', 1],
   ['finance', '인보이스 · 지출', 1],
   ['hr-private', '연결 안 함', 0],
@@ -221,35 +224,20 @@ const CHANNELS = [
 
 const PERMS = `
   <div class="permswrap">
-    <div class="perms">
-      <div class="win pcard">
-        <div class="win-head">
-          <span class="ch">Ringo가 읽는 채널</span>
-          <span class="meta">팀이 직접 선택</span>
-        </div>
-        <div class="plist">
-          ${CHANNELS.map(([c, d, on]) => `
-          <div class="prow${on ? '' : ' off'}">
-            <div class="pmeta">
-              <div class="pname"><span class="hash">#</span>${c}</div>
-              <div class="pdesc">${d}</div>
-            </div>
-            <div class="tog${on ? ' on' : ''}"><i></i></div>
-          </div>`).join('')}
-        </div>
+    <div class="win pcard">
+      <div class="win-head">
+        <span class="ch">Ringo가 읽는 채널</span>
+        <span class="meta">팀이 직접 선택합니다</span>
       </div>
-
-      <div class="win ask">
-        <div class="msg">
-          ${avRingo}
-          <div class="mbody">
-            <div class="mhead">
-              <span class="mname">Ringo</span><span class="badge">앱</span><span class="mtime">오후 3:20</span>
-            </div>
-            <div class="mtext">이 작업은 <strong>되돌릴 수 없어요.</strong><br>진행 전에 확인이 필요합니다.</div>
-            <div class="acts"><span class="btn primary">승인</span><span class="btn">취소</span></div>
+      <div class="plist">
+        ${CHANNELS.map(([c, d, on]) => `
+        <div class="prow${on ? '' : ' off'}">
+          <div class="pmeta">
+            <div class="pname"><span class="hash">#</span>${c}</div>
+            <div class="pdesc">${d}</div>
           </div>
-        </div>
+          <div class="tog${on ? ' on' : ''}"><i></i></div>
+        </div>`).join('')}
       </div>
     </div>
 
@@ -282,39 +270,35 @@ const EXTRA = `
   }
   .gwrap svg { display: block; width: 100%; height: auto; }
 
-  /* 05 권한 패널 */
-  .permswrap { display: flex; flex-direction: column; gap: 30px; width: 100%; }
-  .perms { display: grid; grid-template-columns: 1.05fr 1fr; gap: 32px; align-items: start; }
-  .pcard .plist { padding: 6px 0 8px; }
-  .prow { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; }
+  /* 05 권한 패널 — 좌우 반반. 왼쪽 채널 리스트, 오른쪽 보안 항목 모두 세로 나열 */
+  .permswrap { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: stretch; width: 100%; }
+  .pcard { display: flex; flex-direction: column; }
+  .pcard .plist { padding: 4px 0 6px; flex: 1; }
+  .prow { display: flex; align-items: center; justify-content: space-between; padding: 15px 26px; }
   .prow + .prow { border-top: 1px solid #f1efed; }
-  .pname { font-size: 17px; font-weight: 800; color: var(--sk-ink); letter-spacing: -.01em; }
+  .pname { font-size: 19px; font-weight: 800; color: var(--sk-ink); letter-spacing: -.01em; }
   .pname .hash { color: var(--sk-muted); font-weight: 600; margin-right: 1px; }
-  .pdesc { font-size: 13.5px; color: var(--sk-muted); font-weight: 500; margin-top: 3px; }
+  .pdesc { font-size: 15px; color: var(--sk-muted); font-weight: 500; margin-top: 4px; }
   .prow.off .pname, .prow.off .pdesc { color: #b3afab; }
-  .tog { width: 48px; height: 28px; border-radius: 999px; background: #d8d5d2; position: relative; flex: none; }
-  .tog i { position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%;
+  .tog { width: 52px; height: 30px; border-radius: 999px; background: #d8d5d2; position: relative; flex: none; }
+  .tog i { position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%;
            background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.22); }
   .tog.on { background: #2f6b45; }
-  .tog.on i { left: 23px; }
-  .ask .msg { padding: 22px 24px 20px; }
-  .ask .mtext { font-size: 17px; line-height: 1.55; }
+  .tog.on i { left: 25px; }
 
-  /* 보안 항목: 오른쪽 컬럼에 끼우면 폭이 부족해 줄바꿈이 지저분해져서
-     하단 전체 폭으로 빼고 3개로 정리 */
-  .secbar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .secbar { display: flex; flex-direction: column; gap: 22px; justify-content: center; }
   .secitem {
-    display: flex; align-items: flex-start; gap: 14px;
-    background: rgba(255,252,244,.72);
-    border: 1px solid rgba(119,96,63,.15);
-    border-radius: 16px; padding: 20px 22px;
+    display: flex; align-items: flex-start; gap: 18px;
+    background: rgba(255,252,244,.78);
+    border: 1px solid rgba(119,96,63,.16);
+    border-radius: 20px; padding: 28px 30px;
   }
-  .sdot { flex: none; width: 30px; height: 30px; border-radius: 10px;
+  .sdot { flex: none; width: 36px; height: 36px; border-radius: 12px;
           background: rgba(47,107,69,.12); color: #2f6b45;
-          display: grid; place-items: center; font-size: 15px; font-weight: 900; }
-  .secitem b { display: block; font-size: 20px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
-  .secitem i { display: block; font-style: normal; font-size: 15px; font-weight: 500;
-               color: var(--muted); margin-top: 4px; letter-spacing: -.015em; }
+          display: grid; place-items: center; font-size: 18px; font-weight: 900; }
+  .secitem b { display: block; font-size: 25px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+  .secitem i { display: block; font-style: normal; font-size: 18px; font-weight: 500;
+               color: var(--muted); margin-top: 6px; letter-spacing: -.015em; }
 `;
 
 const slideHtml = s => `
