@@ -62,6 +62,7 @@ const msg = (avatar, name, time, body, badge) => `
 const SLIDES = [
   /* 01 · 선제성 */
   {
+    logo: true,
     h1: '팀의 AI가 <em>먼저 말을 걸어요</em>',
     sub: '아무도 묻지 않았는데, Ringo가 먼저 꺼냈습니다.',
     win: {
@@ -70,7 +71,7 @@ const SLIDES = [
       ${msg(av('yujin'), '최유진', '오후 2:14',
         `<div class="mtext">우리 그냥 다 <strong>연간 결제만</strong> 받는 걸로 갈까요? 매출 예측도 깔끔해지고요</div>`)}
       ${msg(avRingo, 'Ringo', '방금',
-        `<div class="mtext">이 논의는 <strong>3주 전에</strong> 이미 결론이 났어요. 연간 전용은 SMB 체험 4건이 이탈해서 둘 다 유지하기로 했죠. 같은 논의를 반복하지 않게 다시 가져왔어요:</div>
+        `<div class="mtext">이 논의는 <strong>3주 전에</strong> 이미 결론이 났어요. 연간 전용은 SMB 체험 4건이 이탈해서 둘 다 유지하기로 했죠.<br>같은 논의를 반복하지 않게 다시 가져왔어요:</div>
          <div class="att">
            <div class="atitle">결정 · 가격</div>
            <div class="aline">#product · 6월 9일</div>
@@ -148,12 +149,12 @@ const PEOPLE = ['yujin', 'dohyun', 'jimin', 'seoyeon'];
    요소를 키우고 세로 공간을 끝까지 써서 여백이 뜨지 않게 배치. */
 const LX = [167, 322, 477, 632];      // 왼쪽 인물 x (중심 400)
 const RX = [968, 1123, 1278, 1433];   // 오른쪽 인물 x (중심 1200)
-const AY = 232, AR = 56;              // 인물 y / 반지름
+const AY = 190, AR = 56;              // 인물 y / 반지름
 
 /* 02 비주얼: 각자 따로 vs 하나를 함께.
    상단 카피 블록이 156px로 고정되면서 확보된 세로를 요소 확대에 씁니다. */
 const GRAPH_SVG = `
-      <svg viewBox="0 0 1600 700" width="1600" height="700">
+      <svg viewBox="0 0 1600 662" width="1600" height="662">
         <defs>
           <linearGradient id="goldb" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#f4e9d4"/><stop offset="100%" stop-color="#d8bf96"/>
@@ -164,7 +165,7 @@ const GRAPH_SVG = `
           </filter>
         </defs>
 
-        <line x1="800" y1="44" x2="800" y2="656" stroke="#6b5c48"
+        <line x1="800" y1="44" x2="800" y2="620" stroke="#6b5c48"
               stroke-width="1.6" stroke-dasharray="8 11" opacity=".45"/>
 
         <!-- 왼쪽: 다른 AI 도구 -->
@@ -176,21 +177,21 @@ const GRAPH_SVG = `
                width="${AR * 2}" height="${AR * 2}" clip-path="url(#cl${i})"
                style="filter:grayscale(.8) brightness(.55)"/>
         <circle cx="${x}" cy="${AY}" r="${AR}" fill="none" stroke="#5d5244" stroke-width="3"/>
-        <line x1="${x}" y1="${AY + AR + 8}" x2="${x}" y2="382" stroke="#5d5244" stroke-width="2.4" opacity=".75"/>
-        <rect x="${x - 70}" y="382" width="140" height="152" rx="20"
+        <line x1="${x}" y1="${AY + AR + 8}" x2="${x}" y2="340" stroke="#5d5244" stroke-width="2.4" opacity=".75"/>
+        <rect x="${x - 70}" y="340" width="140" height="152" rx="20"
               fill="#2f2921" stroke="#544838" stroke-width="2"/>
-        ${[0, 1, 2, 3].map(k => `<rect x="${x - 44}" y="${414 + k * 28}" width="${[88, 66, 78, 54][k]}" height="9" rx="4.5" fill="#5d5244"/>`).join('')}
+        ${[0, 1, 2, 3].map(k => `<rect x="${x - 44}" y="${372 + k * 28}" width="${[88, 66, 78, 54][k]}" height="9" rx="4.5" fill="#5d5244"/>`).join('')}
         `).join('')}
-        <text x="400" y="600" text-anchor="middle"
+        <text x="400" y="564" text-anchor="middle"
               style="font:700 31px Pretendard,sans-serif;fill:#8d8071;letter-spacing:-.025em">각자의 기억 4개</text>
-        <text x="400" y="646" text-anchor="middle"
+        <text x="400" y="610" text-anchor="middle"
               style="font:500 26px Pretendard,sans-serif;fill:#6f6558;letter-spacing:-.025em">서로 뭘 아는지 모릅니다</text>
 
         <!-- 오른쪽: Ringo -->
         <text x="1200" y="70" text-anchor="middle"
               style="font:700 34px Pretendard,sans-serif;fill:#e8d3ad;letter-spacing:-.02em">Ringo</text>
         ${RX.map((x, i) => `
-        <path d="M${x} ${AY + AR + 8} C ${x} 340, ${1200 + (x - 1200) * 0.22} 350, ${1200 + (x - 1200) * 0.34} 388"
+        <path d="M${x} ${AY + AR + 8} C ${x} 298, ${1200 + (x - 1200) * 0.22} 308, ${1200 + (x - 1200) * 0.34} 346"
               stroke="#c9b28f" stroke-width="3.4" fill="none" opacity=".92"/>
         <clipPath id="cr${i}"><circle cx="${x}" cy="${AY}" r="${AR}"/></clipPath>
         <image href="avatars/${PEOPLE[i]}.png" x="${x - AR}" y="${AY - AR}"
@@ -198,15 +199,15 @@ const GRAPH_SVG = `
         <circle cx="${x}" cy="${AY}" r="${AR}" fill="none" stroke="#f3e9d6" stroke-width="3.5"/>
         `).join('')}
         <g filter="url(#softglow)">
-          <rect x="900" y="388" width="600" height="146" rx="28" fill="url(#goldb)"/>
+          <rect x="900" y="346" width="600" height="146" rx="28" fill="url(#goldb)"/>
         </g>
-        <text x="1200" y="440" text-anchor="middle"
+        <text x="1200" y="398" text-anchor="middle"
               style="font:800 20px Pretendard,sans-serif;fill:#6b5433;letter-spacing:.16em">공유 기억</text>
-        <text x="1200" y="494" text-anchor="middle"
+        <text x="1200" y="452" text-anchor="middle"
               style="font:800 42px Pretendard,sans-serif;fill:#2a2016;letter-spacing:-.03em">하나의 두뇌</text>
-        <text x="1200" y="600" text-anchor="middle"
+        <text x="1200" y="564" text-anchor="middle"
               style="font:700 31px Pretendard,sans-serif;fill:#e2ceac;letter-spacing:-.025em">팀이 함께 쓰는 하나의 기억</text>
-        <text x="1200" y="646" text-anchor="middle"
+        <text x="1200" y="610" text-anchor="middle"
               style="font:500 26px Pretendard,sans-serif;fill:#b8a68c;letter-spacing:-.025em">누가 물어도 같은 맥락으로 답합니다</text>
       </svg>`;
 
@@ -286,23 +287,28 @@ const EXTRA = `
   .tog.on { background: #2f6b45; }
   .tog.on i { left: 25px; }
 
-  .secbar { display: flex; flex-direction: column; gap: 22px; justify-content: center; }
+  /* 카드 3개가 세로를 균등 분할해서 왼쪽 채널 리스트 카드와 전체 높이가 맞습니다. */
+  .secbar { display: flex; flex-direction: column; gap: 22px; }
   .secitem {
-    display: flex; align-items: flex-start; gap: 18px;
+    flex: 1;
+    display: flex; align-items: center; gap: 20px;
     background: rgba(255,252,244,.78);
     border: 1px solid rgba(119,96,63,.16);
-    border-radius: 20px; padding: 28px 30px;
+    border-radius: 20px; padding: 26px 32px;
   }
-  .sdot { flex: none; width: 36px; height: 36px; border-radius: 12px;
+  .sdot { flex: none; width: 40px; height: 40px; border-radius: 13px;
           background: rgba(47,107,69,.12); color: #2f6b45;
           display: grid; place-items: center; font-size: 18px; font-weight: 900; }
-  .secitem b { display: block; font-size: 25px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
-  .secitem i { display: block; font-style: normal; font-size: 18px; font-weight: 500;
-               color: var(--muted); margin-top: 6px; letter-spacing: -.015em; }
+  .secitem b { display: block; font-size: 27px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+  .secitem i { display: block; font-style: normal; font-size: 21px; font-weight: 500;
+               color: var(--muted); margin-top: 8px; letter-spacing: -.015em; }
 `;
 
 const slideHtml = s => `
 <div class="slide${s.inverted ? ' inverted' : ''}">
+  <div class="brand">${s.logo
+    ? `<span class="markimg">${SPIRIT}</span><span class="wordmark">Ringo</span>`
+    : ''}</div>
   <div class="copy">
     <h1>${s.h1}</h1>
   </div>

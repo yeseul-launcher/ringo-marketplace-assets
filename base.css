@@ -66,7 +66,7 @@ body {
   width: 1600px;
   height: 1000px;
   overflow: hidden;
-  padding: 78px 86px 0;
+  padding: 44px 86px 0;
   background:
     radial-gradient(58% 42% at 82% 4%, rgba(255, 250, 236, .95) 0%, rgba(255, 250, 236, 0) 62%),
     radial-gradient(70% 55% at 12% 96%, rgba(214, 226, 199, .40) 0%, rgba(214, 226, 199, 0) 60%),
@@ -378,3 +378,28 @@ html.preview .pvlabel {
 
 /* 창 하단 여백. 이 높이만큼만 캔버스 밖으로 흘러나가 "잘린 창" 느낌을 만듭니다. */
 .winpad { height: 92px; }
+
+
+/* ── 브랜드 슬롯 ─────────────────────────────
+   로고는 1번에만 들어가지만, 5장 모두 같은 높이를 차지해야
+   헤드라인과 목업의 시작 Y가 어긋나지 않습니다. */
+.brand {
+  height: 56px; margin-bottom: 26px;
+  display: flex; align-items: center; justify-content: center; gap: 13px;
+  position: relative; z-index: 2;
+}
+.brand .markimg {
+  width: 56px; height: 56px; border-radius: 16px;
+  /* 목업 안 Ringo 아바타 · 앱 아이콘과 동일한 에스프레소 + 발광 처리 */
+  background:
+    radial-gradient(62% 58% at 50% 44%, #4a3a24 0%, rgba(74,58,36,0) 74%),
+    linear-gradient(155deg, #33281b 0%, #1c1610 100%);
+  display: grid; place-items: center;
+  box-shadow: 0 4px 16px rgba(40, 28, 14, .22);
+}
+.brand .markimg svg { width: 62%; height: 62%; display: block; }
+.brand .wordmark {
+  font-family: 'AnthropicSans', 'Pretendard', sans-serif;
+  font-size: 46px; font-weight: 700; letter-spacing: -.022em; color: #141413;
+}
+.slide.inverted .brand .wordmark { color: #f0eee6; }
