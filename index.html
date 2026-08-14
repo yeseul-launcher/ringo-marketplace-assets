@@ -38,6 +38,10 @@
   /* 유리 표면. 강하게 줬더니 과해서 원래 농도로 되돌림 */
   .gpanel, .gcard {
     background: linear-gradient(142deg, rgba(255,253,248,.82) 0%, rgba(255,251,242,.46) 100%);
+  }
+  /* 왼쪽 채널 리스트만 흰색 쪽으로 회복 (내용이 많아 바탕이 받쳐줘야 읽힘) */
+  .gpanel {
+    background: linear-gradient(150deg, rgba(255,255,255,.94) 0%, rgba(255,253,248,.86) 100%);
     backdrop-filter: blur(22px) saturate(150%);
     -webkit-backdrop-filter: blur(22px) saturate(150%);
     border: 1px solid rgba(255,255,255,.70);
@@ -95,9 +99,9 @@
     border-radius: 24px; padding: 26px 30px;
   }
   .sdot {
-    flex: none; width: 42px; height: 42px; border-radius: 14px;
+    flex: none; width: 52px; height: 52px; border-radius: 17px;
     background: rgba(47,107,69,.15); color: #2f6b45;
-    display: grid; place-items: center; font-size: 19px; font-weight: 900;
+    display: grid; place-items: center; font-size: 28px; font-weight: 900;
   }
   .gcard b { display: block; font-size: 25px; font-weight: 800; color: #241c14; letter-spacing: -.022em; }
   .gcard i {
@@ -128,7 +132,7 @@
   <ellipse cx="559" cy="585" rx="37" ry="57" fill="url(#sEye)"/>
 </svg></span><span class="wordmark">Ringo</span></div>
   <div class="copy">
-    <h1>팀의 AI가 <em>먼저 말을 걸어요</em></h1>
+    <h1>알아서 일하는 <em>AI 직원</em></h1>
   </div>
   <div class="fit">
     <div class="win">
@@ -351,7 +355,7 @@
   <div class="wash w3" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="brand"></div>
   <div class="copy">
-    <h1>답만 하지 않아요, <em>일을 끝냅니다</em></h1>
+    <h1>제안이 아니라, <em>실행합니다</em></h1>
   </div>
   <div class="fit">
     <div class="win">
@@ -420,7 +424,7 @@
   <div class="wash w4" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="brand"></div>
   <div class="copy">
-    <h1>매달 반복되는 일, <em>이제 맡기세요</em></h1>
+    <h1>반복 업무는 <em>Ringo에게</em></h1>
   </div>
   <div class="fit">
     <div class="win">
@@ -490,7 +494,7 @@
   
   <div class="brand"></div>
   <div class="copy">
-    <h1>경계도 권한도 <em>팀이 정합니다</em></h1>
+    <h1>역할과 권한, <em>원하는 대로</em></h1>
   </div>
   <div class="fit">
     

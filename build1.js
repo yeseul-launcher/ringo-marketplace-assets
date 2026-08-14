@@ -63,7 +63,7 @@ const SLIDES = [
   /* 01 · 선제성 */
   {
     logo: true, wash: 'w1',
-    h1: '팀의 AI가 <em>먼저 말을 걸어요</em>',
+    h1: '알아서 일하는 <em>AI 직원</em>',
     sub: '아무도 묻지 않았는데, Ringo가 먼저 꺼냈습니다.',
     win: {
       ch: 'product', meta: '멤버 14명', faces: ['yujin','sam','elena','seoyeon'], more: 10,
@@ -92,7 +92,7 @@ const SLIDES = [
   /* 03 · 실행 */
   {
     wash: 'w3',
-    h1: '답만 하지 않아요, <em>일을 끝냅니다</em>',
+    h1: '제안이 아니라, <em>실행합니다</em>',
     sub: '원인을 찾고 수정본까지 올려둡니다.',
     win: {
       ch: 'eng-alerts', meta: '멤버 9명', faces: ['dohyun','sam','jimin'], more: 6,
@@ -113,7 +113,7 @@ const SLIDES = [
   /* 04 · 자동화 */
   {
     wash: 'w4',
-    h1: '매달 반복되는 일, <em>이제 맡기세요</em>',
+    h1: '반복 업무는 <em>Ringo에게</em>',
     sub: '다음 달 자동 실행까지 먼저 제안합니다.',
     win: {
       ch: 'finance', meta: '멤버 6명', faces: ['jimin','elena','yujin'], more: 4,
@@ -134,7 +134,7 @@ const SLIDES = [
 
   /* 05 · 주도권 & 보안 */
   {
-    h1: '경계도 권한도 <em>팀이 정합니다</em>',
+    h1: '역할과 권한, <em>원하는 대로</em>',
     sub: '연결한 소스만 읽고, 프로젝트별로 분리해 보관합니다.',
     custom: 'perms'
   }
@@ -329,6 +329,10 @@ const EXTRA = `
   /* 유리 표면. 강하게 줬더니 과해서 원래 농도로 되돌림 */
   .gpanel, .gcard {
     background: linear-gradient(142deg, rgba(255,253,248,.82) 0%, rgba(255,251,242,.46) 100%);
+  }
+  /* 왼쪽 채널 리스트만 흰색 쪽으로 회복 (내용이 많아 바탕이 받쳐줘야 읽힘) */
+  .gpanel {
+    background: linear-gradient(150deg, rgba(255,255,255,.94) 0%, rgba(255,253,248,.86) 100%);
     backdrop-filter: blur(22px) saturate(150%);
     -webkit-backdrop-filter: blur(22px) saturate(150%);
     border: 1px solid rgba(255,255,255,.70);
@@ -386,9 +390,9 @@ const EXTRA = `
     border-radius: 24px; padding: 26px 30px;
   }
   .sdot {
-    flex: none; width: 42px; height: 42px; border-radius: 14px;
+    flex: none; width: 52px; height: 52px; border-radius: 17px;
     background: rgba(47,107,69,.15); color: #2f6b45;
-    display: grid; place-items: center; font-size: 19px; font-weight: 900;
+    display: grid; place-items: center; font-size: 28px; font-weight: 900;
   }
   .gcard b { display: block; font-size: 25px; font-weight: 800; color: #241c14; letter-spacing: -.022em; }
   .gcard i {

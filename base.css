@@ -171,7 +171,7 @@ h1 em { font-style: normal; color: #6b5433; }
   align-items: center;
   gap: 9px;
   height: 54px;
-  padding: 0 22px;
+  padding: 0 38px;
   border-bottom: 1px solid var(--sk-line);
   background: #fff;
 }
@@ -188,7 +188,7 @@ h1 em { font-style: normal; color: #6b5433; }
 .win-body { padding: 16px 0 18px; }
 
 /* 메시지 */
-.msg { display: flex; gap: 12px; padding: 9px 22px; }
+.msg { display: flex; gap: 12px; padding: 9px 38px; }
 .msg + .msg { padding-top: 12px; }
 .av {
   flex: none;
@@ -223,10 +223,15 @@ h1 em { font-style: normal; color: #6b5433; }
   margin-top: 13px;
   border-left: 5px solid var(--oak);
   border-radius: 0 12px 12px 0;
-  /* 창 배경이 거의 흰색이라 #fbfaf8 로는 안 보였는데, 웜톤을 올렸더니 누렇게 떴습니다.
-     채도는 빼고 명도만 낮춘 웜 그레이로. */
-  background: linear-gradient(138deg, rgba(116,104,88,.11) 0%, rgba(116,104,88,.07) 100%);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+  /* 유리 창 위에 어두운 덩어리를 얹으면 겉돕니다.
+     어둡게 하는 대신 더 밝은 유리 조각으로 띄우고, 구분은 테두리와 왼쪽 바가 맡습니다. */
+  background: linear-gradient(150deg, rgba(255,255,255,.72) 0%, rgba(255,253,248,.46) 100%);
+  border-top: 1px solid rgba(255,255,255,.9);
+  border-right: 1px solid rgba(120,100,74,.14);
+  border-bottom: 1px solid rgba(120,100,74,.10);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,1),
+    0 2px 10px rgba(94,68,34,.07);
   padding: 15px 20px 16px;
   max-width: 680px;
 }
@@ -284,7 +289,7 @@ h1 em { font-style: normal; color: #6b5433; }
 
 /* 입력창 */
 .composer {
-  margin: 14px 22px 0;
+  margin: 14px 38px 0;
   border: 1px solid #c9c8c7; border-radius: 9px;
   padding: 13px 15px;
   font-size: 15.5px; color: #9a9a9a; font-weight: 500;
@@ -452,31 +457,42 @@ html.preview .pvlabel {
   position: relative;
   isolation: isolate;
   background:
-    /* (2) 상단 광택 */
-    linear-gradient(180deg, rgba(255,255,255,.85) 0, rgba(255,255,255,0) 130px),
-    /* 본 표면 */
-    linear-gradient(158deg, rgba(255,255,255,.93) 0%, rgba(255,252,245,.85) 100%);
-  backdrop-filter: blur(26px) saturate(180%);
-  -webkit-backdrop-filter: blur(26px) saturate(180%);
+    /* (2) 상단 스펙큘러 — 더 길고 강하게 */
+    linear-gradient(174deg, rgba(255,255,255,.92) 0, rgba(255,255,255,.30) 190px, rgba(255,255,255,0) 330px),
+    /* 좌상단 빛 받는 면 */
+    radial-gradient(120% 90% at 8% -8%, rgba(255,255,255,.72) 0%, rgba(255,255,255,0) 52%),
+    /* 본 표면 — 뒤 색이 비치도록 불투명도 낮춤 */
+    linear-gradient(158deg, rgba(255,255,255,.91) 0%, rgba(255,251,243,.83) 100%);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
   border: none;
   box-shadow:
-    0 36px 74px -22px rgba(88, 62, 30, .32),
+    0 40px 80px -24px rgba(88, 62, 30, .34),
     0 8px 22px -8px rgba(88, 62, 30, .14),
-    /* (3) 두께감 */
-    inset 0 1px 1px rgba(255,255,255,.98),
-    inset 0 -18px 30px -22px rgba(150,118,74,.55);
+    /* (3) 두께감 — 위 림라이트 / 아래 굴절 그림자 */
+    inset 0 0 0 1px rgba(255,255,255,.60),
+    inset 0 2.5px 2px -1px rgba(255,255,255,1),
+    inset 2px 0 2px -1px rgba(255,255,255,.85),
+    inset -2px 0 2px -1px rgba(255,255,255,.60),
+    inset 0 -2px 2px -1px rgba(255,255,255,.70),
+    inset 0 -30px 44px -28px rgba(150,118,74,.55);
 }
 
 /* (1) 테두리 광택: 마스크로 1.2px 링만 남깁니다 */
 .win::before {
   content: '';
   position: absolute; inset: 0; border-radius: inherit;
-  padding: 1.2px;
-  background: linear-gradient(138deg,
-    rgba(255,255,255,1) 0%,
-    rgba(255,255,255,.20) 34%,
-    rgba(196,170,132,.30) 58%,
-    rgba(255,255,255,.92) 100%);
+  padding: 2.4px;
+  /* 빛이 테두리를 따라 한 바퀴 도는 표현. 유리 가장자리 굴절감의 핵심 */
+  background: conic-gradient(from 208deg at 50% 50%,
+    rgba(255,255,255,.12)  0deg,
+    rgba(255,255,255,1)    52deg,
+    rgba(255,255,255,.85)  84deg,
+    rgba(255,255,255,.14) 140deg,
+    rgba(186,158,116,.55) 196deg,
+    rgba(255,255,255,.30) 250deg,
+    rgba(255,255,255,1)   304deg,
+    rgba(255,255,255,.12) 360deg);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -487,3 +503,8 @@ html.preview .pvlabel {
 
 .win-head { background: transparent; border-bottom-color: rgba(120,100,74,.14); }
 .composer { border-color: rgba(120,100,74,.22); }
+
+
+/* 유리 창 위에 얹히는 요소는 완전 불투명이면 유리감이 끊깁니다 */
+.att { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.rx span, .btn { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
