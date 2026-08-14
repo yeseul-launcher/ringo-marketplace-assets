@@ -305,7 +305,6 @@ const slideHtml = s => `
 <div class="slide${s.inverted ? ' inverted' : ''}">
   <div class="copy">
     <h1>${s.h1}</h1>
-    <div class="sub">${s.sub}</div>
   </div>
   <div class="fit">
     ${s.custom === 'graph' ? GRAPH

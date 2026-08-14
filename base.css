@@ -117,7 +117,9 @@ body {
 /* 상단 블록 높이 고정.
    장마다 카피 길이가 달라도 목업 시작 Y가 동일해야 세트로 보입니다.
    헤드라인 1줄(86) + 간격(18) + 서브 1줄(47) = 151 → 156 고정 */
-.copy { position: relative; z-index: 2; margin-top: 0; height: 160px; }
+/* 헤드라인 한 줄 높이로 고정.
+   장마다 카피 길이가 달라도 목업 시작 Y가 동일해야 세트로 보입니다. */
+.copy { position: relative; z-index: 2; margin-top: 0; height: 90px; }
 .eyebrow {
   display: inline-block;
   font-size: 15px;
