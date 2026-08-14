@@ -205,7 +205,27 @@
       <svg viewBox="0 0 1600 662" width="1600" height="662">
         <defs>
           <linearGradient id="goldb" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#f4e9d4"/><stop offset="100%" stop-color="#d8bf96"/>
+            <stop offset="0%" stop-color="#f7eddb"/>
+            <stop offset="46%" stop-color="#e6d0a9"/>
+            <stop offset="100%" stop-color="#d3b78c"/>
+          </linearGradient>
+          <!-- 유리 표면: 위쪽이 밝고 아래로 투명해지는 반투명 판 -->
+          <linearGradient id="glassBox" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#ffffff" stop-opacity=".16"/>
+            <stop offset="44%"  stop-color="#ffffff" stop-opacity=".05"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity=".02"/>
+          </linearGradient>
+          <!-- 테두리 광택: 좌상단이 밝고 우하단으로 사라짐 -->
+          <linearGradient id="glassEdge" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%"   stop-color="#ffffff" stop-opacity=".85"/>
+            <stop offset="38%"  stop-color="#ffffff" stop-opacity=".18"/>
+            <stop offset="72%"  stop-color="#c9b28f" stop-opacity=".22"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity=".55"/>
+          </linearGradient>
+          <!-- 상단 스펙큘러 -->
+          <linearGradient id="spec" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#ffffff" stop-opacity=".55"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
           </linearGradient>
           <filter id="softglow" x="-60%" y="-60%" width="220%" height="220%">
             <feGaussianBlur stdDeviation="22" result="b"/>
@@ -226,8 +246,11 @@
                style="filter:grayscale(.8) brightness(.55)"/>
         <circle cx="167" cy="190" r="56" fill="none" stroke="#5d5244" stroke-width="3"/>
         <line x1="167" y1="254" x2="167" y2="340" stroke="#5d5244" stroke-width="2.4" opacity=".75"/>
+        <rect x="97" y="340" width="140" height="152" rx="20" fill="#2b251d"/>
+        <rect x="97" y="340" width="140" height="152" rx="20" fill="url(#glassBox)"/>
+        <rect x="101" y="344" width="132" height="58" rx="16" fill="url(#spec)" opacity=".5"/>
         <rect x="97" y="340" width="140" height="152" rx="20"
-              fill="#2f2921" stroke="#544838" stroke-width="2"/>
+              fill="none" stroke="url(#glassEdge)" stroke-width="1.6"/>
         <rect x="123" y="372" width="88" height="9" rx="4.5" fill="#5d5244"/><rect x="123" y="400" width="66" height="9" rx="4.5" fill="#5d5244"/><rect x="123" y="428" width="78" height="9" rx="4.5" fill="#5d5244"/><rect x="123" y="456" width="54" height="9" rx="4.5" fill="#5d5244"/>
         
         <clipPath id="cl1"><circle cx="322" cy="190" r="56"/></clipPath>
@@ -236,8 +259,11 @@
                style="filter:grayscale(.8) brightness(.55)"/>
         <circle cx="322" cy="190" r="56" fill="none" stroke="#5d5244" stroke-width="3"/>
         <line x1="322" y1="254" x2="322" y2="340" stroke="#5d5244" stroke-width="2.4" opacity=".75"/>
+        <rect x="252" y="340" width="140" height="152" rx="20" fill="#2b251d"/>
+        <rect x="252" y="340" width="140" height="152" rx="20" fill="url(#glassBox)"/>
+        <rect x="256" y="344" width="132" height="58" rx="16" fill="url(#spec)" opacity=".5"/>
         <rect x="252" y="340" width="140" height="152" rx="20"
-              fill="#2f2921" stroke="#544838" stroke-width="2"/>
+              fill="none" stroke="url(#glassEdge)" stroke-width="1.6"/>
         <rect x="278" y="372" width="88" height="9" rx="4.5" fill="#5d5244"/><rect x="278" y="400" width="66" height="9" rx="4.5" fill="#5d5244"/><rect x="278" y="428" width="78" height="9" rx="4.5" fill="#5d5244"/><rect x="278" y="456" width="54" height="9" rx="4.5" fill="#5d5244"/>
         
         <clipPath id="cl2"><circle cx="477" cy="190" r="56"/></clipPath>
@@ -246,8 +272,11 @@
                style="filter:grayscale(.8) brightness(.55)"/>
         <circle cx="477" cy="190" r="56" fill="none" stroke="#5d5244" stroke-width="3"/>
         <line x1="477" y1="254" x2="477" y2="340" stroke="#5d5244" stroke-width="2.4" opacity=".75"/>
+        <rect x="407" y="340" width="140" height="152" rx="20" fill="#2b251d"/>
+        <rect x="407" y="340" width="140" height="152" rx="20" fill="url(#glassBox)"/>
+        <rect x="411" y="344" width="132" height="58" rx="16" fill="url(#spec)" opacity=".5"/>
         <rect x="407" y="340" width="140" height="152" rx="20"
-              fill="#2f2921" stroke="#544838" stroke-width="2"/>
+              fill="none" stroke="url(#glassEdge)" stroke-width="1.6"/>
         <rect x="433" y="372" width="88" height="9" rx="4.5" fill="#5d5244"/><rect x="433" y="400" width="66" height="9" rx="4.5" fill="#5d5244"/><rect x="433" y="428" width="78" height="9" rx="4.5" fill="#5d5244"/><rect x="433" y="456" width="54" height="9" rx="4.5" fill="#5d5244"/>
         
         <clipPath id="cl3"><circle cx="632" cy="190" r="56"/></clipPath>
@@ -256,8 +285,11 @@
                style="filter:grayscale(.8) brightness(.55)"/>
         <circle cx="632" cy="190" r="56" fill="none" stroke="#5d5244" stroke-width="3"/>
         <line x1="632" y1="254" x2="632" y2="340" stroke="#5d5244" stroke-width="2.4" opacity=".75"/>
+        <rect x="562" y="340" width="140" height="152" rx="20" fill="#2b251d"/>
+        <rect x="562" y="340" width="140" height="152" rx="20" fill="url(#glassBox)"/>
+        <rect x="566" y="344" width="132" height="58" rx="16" fill="url(#spec)" opacity=".5"/>
         <rect x="562" y="340" width="140" height="152" rx="20"
-              fill="#2f2921" stroke="#544838" stroke-width="2"/>
+              fill="none" stroke="url(#glassEdge)" stroke-width="1.6"/>
         <rect x="588" y="372" width="88" height="9" rx="4.5" fill="#5d5244"/><rect x="588" y="400" width="66" height="9" rx="4.5" fill="#5d5244"/><rect x="588" y="428" width="78" height="9" rx="4.5" fill="#5d5244"/><rect x="588" y="456" width="54" height="9" rx="4.5" fill="#5d5244"/>
         
         <text x="400" y="564" text-anchor="middle"
@@ -300,6 +332,9 @@
         <g filter="url(#softglow)">
           <rect x="900" y="346" width="600" height="146" rx="28" fill="url(#goldb)"/>
         </g>
+        <rect x="908" y="352" width="584" height="62" rx="24" fill="url(#spec)" opacity=".62"/>
+        <rect x="900" y="346" width="600" height="146" rx="28"
+              fill="none" stroke="url(#glassEdge)" stroke-width="1.8"/>
         <text x="1200" y="398" text-anchor="middle"
               style="font:800 20px Pretendard,sans-serif;fill:#6b5433;letter-spacing:.16em">공유 기억</text>
         <text x="1200" y="452" text-anchor="middle"

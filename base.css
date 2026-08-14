@@ -342,7 +342,8 @@ html.preview .pvlabel {
 .slide.inverted .sub { color: #bfae97; }
 
 /* 그래프를 좌우로 꽉 채움 */
-.slide.inverted .fit { margin-top: 62px; }
+/* 2번은 다이어그램이라 헤드라인과 붙어도 답답하지 않음 */
+.slide.inverted .fit { margin-top: 26px; }
 .gfull { width: 1600px; margin-left: -86px; }
 .gfull svg { display: block; width: 100%; height: auto; }
 
