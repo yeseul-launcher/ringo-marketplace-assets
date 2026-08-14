@@ -62,7 +62,7 @@ const msg = (avatar, name, time, body, badge) => `
 const SLIDES = [
   /* 01 · 선제성 */
   {
-    logo: true,
+    logo: true, wash: 'w1',
     h1: '팀의 AI가 <em>먼저 말을 걸어요</em>',
     sub: '아무도 묻지 않았는데, Ringo가 먼저 꺼냈습니다.',
     win: {
@@ -71,9 +71,8 @@ const SLIDES = [
       ${msg(av('yujin'), '최유진', '오후 2:14',
         `<div class="mtext">우리 그냥 다 <strong>연간 결제만</strong> 받는 걸로 갈까요? 매출 예측도 깔끔해지고요</div>`)}
       ${msg(avRingo, 'Ringo', '방금',
-        `<div class="mtext">이 논의는 <strong>3주 전에</strong> 이미 결론이 났어요. 연간 전용은 SMB 체험 4건이 이탈해서 둘 다 유지하기로 했죠.<br>같은 논의를 반복하지 않게 다시 가져왔어요:</div>
+        `<div class="mtext">이 논의는 <strong class="hl">3주 전에</strong> 이미 결론이 났어요. 연간 전용은 SMB 체험 4건이 이탈해서 둘 다 유지하기로 했죠.<br>같은 논의를 반복하지 않게 다시 가져왔어요:</div>
          <div class="att">
-           <div class="atitle">결정 · 가격</div>
            <div class="aline">#product · 6월 9일</div>
            <div class="aquote">“월간 + 연간 둘 다 유지. 연간 전용은 테스트에서 SMB 체험 4건을 잃었음.”</div>
            <div class="afoot">Sam이 정리 · 팀원 6명이 동의했어요</div>
@@ -92,6 +91,7 @@ const SLIDES = [
 
   /* 03 · 실행 */
   {
+    wash: 'w3',
     h1: '답만 하지 않아요, <em>일을 끝냅니다</em>',
     sub: '원인을 찾고 수정본까지 올려둡니다.',
     win: {
@@ -100,7 +100,7 @@ const SLIDES = [
       ${msg(av('dohyun'), '김도현', '오전 9:41',
         `<div class="mtext"><span class="mention">@Ringo</span> 가입 웹훅이 아침부터 500 오류가 나요. 원인을 추적해줄래요?</div>`)}
       ${msg(avRingo, 'Ringo', '방금',
-        `<div class="mtext">PR #4821 이후 발생한 <strong>null 이메일</strong>이 원인이에요. 안전한 수정안을 준비했어요.</div>
+        `<div class="mtext">PR #4821 이후 발생한 <strong class="hl err">null 이메일</strong>이 원인이에요. 안전한 수정안을 준비했어요.</div>
          <div class="steps">
            <div class="step"><span class="dot">✓</span>수정본 PR #4830 초안 작성 <span class="tag">· 테스트 통과</span></div>
            <div class="step"><span class="dot">✓</span>인시던트 등록 <span class="tag">· 상태 페이지 업데이트</span></div>
@@ -112,6 +112,7 @@ const SLIDES = [
 
   /* 04 · 자동화 */
   {
+    wash: 'w4',
     h1: '매달 반복되는 일, <em>이제 맡기세요</em>',
     sub: '다음 달 자동 실행까지 먼저 제안합니다.',
     win: {
@@ -120,9 +121,9 @@ const SLIDES = [
       ${msg(av('jimin'), '박지민', '오후 5:02',
         `<div class="mtext"><span class="mention">@Ringo</span> 이번 달 인보이스 대사하고 이상한 거 있으면 짚어줘.</div>`)}
       ${msg(avRingo, 'Ringo', '방금',
-        `<div class="mtext">Stripe + QuickBooks에서 인보이스 <strong>312건</strong>을 대사했어요.</div>
+        `<div class="mtext">Stripe + QuickBooks에서 인보이스 <strong class="hl">312건</strong>을 대사했어요.</div>
          <div class="steps">
-           <div class="step"><span class="dot warn">!</span>이상 발견: ACME에 <strong>약 $2,400 과다 청구</strong></div>
+           <div class="step"><span class="dot warn">!</span>이상 발견: ACME에 <strong class="hl warn">약 $2,400 과다 청구</strong></div>
            <div class="step"><span class="dot">✓</span>ACME 환불 이메일 초안 작성</div>
            <div class="step"><span class="dot file">↓</span>월말 마감 자료 준비 완료 <span class="tag">· Excel · 시트 6개</span></div>
          </div>
@@ -223,36 +224,43 @@ const CHANNELS = [
   ['exec-private', '연결 안 함', 0]
 ];
 
+
+/* 05 — 리퀴드 글라스. 카드를 하나의 패널이 아니라 개별 유리 조각으로 흩뿌립니다.
+   블러가 보이려면 뒤에 색이 있어야 해서 배경 블롭을 먼저 깝니다. */
 const SECS = [
   ['연결한 소스만 읽음', '켜둔 채널 밖은 접근하지 않습니다'],
   ['프로젝트별 접근 분리', '팀 데이터는 각자의 프로젝트 안에만'],
   ['자격 증명 암호화', 'SOC 2 준비 중']
 ];
 
-/* 05 — 리퀴드 글라스. 카드를 하나의 패널이 아니라 개별 유리 조각으로 흩뿌립니다.
+/* 05 — 왼쪽은 Slack 설정 패널 형태를 유지하되 표면만 리퀴드 글라스로.
    블러가 보이려면 뒤에 색이 있어야 해서 배경 블롭을 먼저 깝니다. */
 const PERMS = `
   <div class="g5">
     <div class="blobs" aria-hidden="true">
-      <i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i>
+      <i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i><i class="b5"></i>
     </div>
 
-    <div class="gcol gleft">
-      <p class="glabel">Ringo가 읽는 채널</p>
-      ${CHANNELS.map(([c, d, on], i) => `
-      <div class="gchip${on ? ' on' : ' off'}" style="--i:${i}">
-        <div class="gtext">
-          <b><span class="hash">#</span>${c}</b>
-          <i>${d}</i>
-        </div>
-        <div class="tog${on ? ' on' : ''}"><span></span></div>
-      </div>`).join('')}
+    <div class="gpanel">
+      <div class="gphead">
+        <span class="ch"><span class="hash">#</span> 채널 연결</span>
+        <span class="meta">팀이 직접 선택합니다</span>
+      </div>
+      <div class="gplist">
+        ${CHANNELS.map(([c, d, on]) => `
+        <div class="gprow${on ? '' : ' off'}">
+          <div class="gptext">
+            <b><span class="hash">#</span>${c}</b>
+            <i>${d}</i>
+          </div>
+          <div class="tog${on ? ' on' : ''}"><span></span></div>
+        </div>`).join('')}
+      </div>
     </div>
 
     <div class="gcol gright">
-      <p class="glabel">기본으로 지키는 것</p>
-      ${SECS.map(([t, d], i) => `
-      <div class="gcard" style="--i:${i}">
+      ${SECS.map(([t, d]) => `
+      <div class="gcard">
         <span class="sdot">✓</span>
         <div><b>${t}</b><i>${d}</i></div>
       </div>`).join('')}
@@ -279,47 +287,59 @@ const EXTRA = `
   /* ── 05 리퀴드 글라스 ────────────────────────────
      유리는 뒤에 색이 있어야 읽히므로 블롭을 먼저 깔고 그 위에 얹습니다. */
   .g5 { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 44px; width: 100%; }
-  .blobs { position: absolute; inset: -140px -80px; z-index: 0; pointer-events: none; }
-  .blobs i { position: absolute; display: block; border-radius: 50%; filter: blur(58px); }
-  .blobs .b1 { width: 520px; height: 420px; left: 2%;  top: -40px;  background: rgba(201,178,143,.62); }
-  .blobs .b2 { width: 440px; height: 380px; left: 33%; top: 190px;  background: rgba(180,199,160,.48); }
-  .blobs .b3 { width: 480px; height: 400px; right: 6%; top: -20px;  background: rgba(240,196,140,.55); }
-  .blobs .b4 { width: 420px; height: 360px; right: 24%; bottom: -90px; background: rgba(214,164,150,.42); }
+  /* 헤드라인 영역까지 색이 올라오면 글자가 지저분해져서
+     콘텐츠 영역 안으로만 번지게 제한합니다. */
+  .blobs { position: absolute; inset: -30px -120px -80px; z-index: 0; pointer-events: none; overflow: visible; }
+  .blobs i { position: absolute; display: block; border-radius: 50%; filter: blur(66px); }
+  .blobs .b1 { width: 600px; height: 440px; left: -4%;  top: 40px;   background: rgba(240,196,132,.52); }
+  .blobs .b2 { width: 520px; height: 400px; left: 28%;  top: 250px;  background: rgba(246,220,180,.44); }
+  .blobs .b3 { width: 560px; height: 430px; right: 0%;  top: 60px;   background: rgba(201,178,143,.50); }
+  .blobs .b4 { width: 480px; height: 380px; right: 24%; bottom: -40px; background: rgba(240,196,132,.40); }
+  .blobs .b5 { width: 440px; height: 280px; left: 22%;  top: 20px;   background: rgba(246,220,180,.44); }
 
-  .gcol { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 14px; }
-  .glabel {
-    font-size: 19px; font-weight: 800; letter-spacing: .1em;
-    color: var(--brown); margin: 0 0 8px 8px;
-  }
+  .gcol { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 18px; }
 
   /* 유리 표면 공통 */
-  .gchip, .gcard {
-    background: linear-gradient(142deg, rgba(255,253,248,.80) 0%, rgba(255,251,242,.44) 100%);
-    backdrop-filter: blur(20px) saturate(150%);
-    -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border: 1px solid rgba(255,255,255,.68);
+  /* 유리 표면. 강하게 줬더니 과해서 원래 농도로 되돌림 */
+  .gpanel, .gcard {
+    background: linear-gradient(142deg, rgba(255,253,248,.82) 0%, rgba(255,251,242,.46) 100%);
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    border: 1px solid rgba(255,255,255,.70);
     box-shadow:
-      0 10px 34px rgba(94,68,34,.14),
-      inset 0 1px 0 rgba(255,255,255,.85);
+      0 12px 38px rgba(94,68,34,.15),
+      inset 0 1px 0 rgba(255,255,255,.88);
   }
 
-  /* 채널 칩: 일부러 어긋나게 배치 */
-  .gchip {
+  /* 왼쪽: Slack 설정 패널 형태 유지 */
+  .gpanel { position: relative; z-index: 1; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; }
+  .gphead {
+    display: flex; align-items: center; gap: 12px;
+    padding: 20px 26px;
+    border-bottom: 1px solid rgba(120,100,74,.16);
+  }
+  .gphead .ch { font-size: 19px; font-weight: 800; color: #241c14; letter-spacing: -.015em; }
+  .gphead .ch .hash { color: #9c8258; }
+  .gphead .meta {
+    font-size: 15px; color: #6f6053; font-weight: 500;
+    padding-left: 12px; border-left: 1px solid rgba(120,100,74,.22);
+  }
+  .gplist { flex: 1; display: flex; flex-direction: column; }
+  .gprow {
+    flex: 1;
     display: flex; align-items: center; justify-content: space-between; gap: 20px;
-    border-radius: 20px; padding: 19px 24px;
-    margin-left: calc(var(--i) * 17px);
-    margin-right: calc((5 - var(--i)) * 9px);
+    padding: 16px 26px;
   }
-  .gchip.off { opacity: .58; }
-  .gchip .gtext b {
-    display: block; font-size: 21px; font-weight: 800;
-    color: #241c14; letter-spacing: -.02em;
-  }
-  .gchip .gtext b .hash { color: #9c8258; margin-right: 1px; }
-  .gchip .gtext i {
+  .gprow + .gprow { border-top: 1px solid rgba(120,100,74,.13); }
+  .gprow b { display: block; font-size: 21px; font-weight: 800; color: #241c14; letter-spacing: -.02em; }
+  .gprow b .hash { color: #9c8258; margin-right: 1px; }
+  .gprow i {
     display: block; font-style: normal; font-size: 15px; font-weight: 500;
     color: #6f6053; margin-top: 4px; letter-spacing: -.015em;
   }
+  .gprow.off b, .gprow.off i { color: #a2968a; }
+  .gprow.off { opacity: .7; }
+
   .tog {
     width: 54px; height: 31px; border-radius: 999px; flex: none; position: relative;
     background: rgba(120,105,88,.28);
@@ -333,13 +353,11 @@ const EXTRA = `
   .tog.on { background: #2f6b45; box-shadow: inset 0 1px 3px rgba(20,60,35,.35); }
   .tog.on span { left: 26px; }
 
-  /* 보안 카드: 반대 방향으로 어긋나게 */
-  .gright { justify-content: center; }
+  /* 오른쪽 보안 카드 */
   .gcard {
+    flex: 1;
     display: flex; align-items: center; gap: 20px;
     border-radius: 24px; padding: 26px 30px;
-    margin-right: calc(var(--i) * 20px);
-    margin-left: calc((2 - var(--i)) * 14px);
   }
   .sdot {
     flex: none; width: 42px; height: 42px; border-radius: 14px;
@@ -355,6 +373,7 @@ const EXTRA = `
 
 const slideHtml = s => `
 <div class="slide${s.inverted ? ' inverted' : ''}">
+  ${s.wash ? `<div class="wash ${s.wash}" aria-hidden="true"><i></i><i></i><i></i></div>` : ''}
   <div class="brand">${s.logo
     ? `<span class="markimg">${SPIRIT}</span><span class="wordmark">Ringo</span>`
     : ''}</div>
