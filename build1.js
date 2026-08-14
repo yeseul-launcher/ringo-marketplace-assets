@@ -16,7 +16,24 @@ const path = require('path');
 const DIR = __dirname;
 
 /* 제품 실제 마스코트 (ringoai.app DOM에서 가져온 path) */
-const SPIRIT = `<svg viewBox="250 240 760 800" aria-hidden="true"><path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z" fill="#f0eee6"/><ellipse cx="436" cy="585" rx="37" ry="57" fill="#141413"/><ellipse cx="559" cy="585" rx="37" ry="57" fill="#141413"/></svg>`;
+const SPIRIT = `<svg viewBox="291 282 662 715" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <defs>
+    <linearGradient id="sBody" x1="28%" y1="4%" x2="72%" y2="100%">
+      <stop offset="0%" stop-color="#fefdfb"/><stop offset="52%" stop-color="#f9f3ea"/><stop offset="100%" stop-color="#ebe0d0"/>
+    </linearGradient>
+    <linearGradient id="sEye" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#58493f"/><stop offset="100%" stop-color="#3a2e27"/>
+    </linearGradient>
+    <radialGradient id="sGloss" cx="34%" cy="20%" r="42%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".55"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="sClip"><path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z"/></clipPath>
+  </defs>
+  <path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z" fill="url(#sBody)"/>
+  <ellipse cx="520" cy="430" rx="250" ry="200" fill="url(#sGloss)" clip-path="url(#sClip)"/>
+  <ellipse cx="436" cy="585" rx="37" ry="57" fill="url(#sEye)"/>
+  <ellipse cx="559" cy="585" rx="37" ry="57" fill="url(#sEye)"/>
+</svg>`;
 
 /* 사람 아바타는 원형 사진, Ringo는 검정 라운드 타일 + 유령 (제품과 동일) */
 const av = who => `<div class="av person"><img src="avatars/${who}.png" alt=""></div>`;
@@ -46,7 +63,7 @@ const SLIDES = [
   /* 01 · 선제성 */
   {
     h1: '팀의 AI가 <em>먼저 말을 걸어요.</em>',
-    sub: '아무도 묻지 않았습니다. 팀이 3주 전에 내린 결정을 Ringo가 먼저 기억해 냈어요.',
+    sub: '아무도 묻지 않았는데, Ringo가 먼저 꺼냈습니다.',
     win: {
       ch: 'product', meta: '멤버 14명', faces: ['yujin','sam','elena','seoyeon'], more: 10,
       body: `
@@ -68,14 +85,14 @@ const SLIDES = [
   /* 02 · 공유 기억 */
   {
     h1: '팀 전체가 함께 쓰는 <em>하나의 두뇌.</em>',
-    sub: '50개의 개인 채팅 기록이 아니라, 모든 결정과 사람과 업무를 잇는 살아 있는 공유 기억.',
+    sub: '50개의 개인 기록이 아니라, 팀이 함께 쓰는 하나의 기억.',
     custom: 'graph', inverted: true
   },
 
   /* 03 · 실행 */
   {
     h1: '답만 하지 않아요. <em>일을 끝냅니다.</em>',
-    sub: '원인을 찾고 수정본까지 올려둡니다. 머지할지 말지, 사람이 결정할 것만 남겨두고요.',
+    sub: '원인을 찾고 수정본까지 올려둡니다. 머지만 결정하세요.',
     win: {
       ch: 'eng-alerts', meta: '멤버 9명', faces: ['dohyun','sam','jimin'], more: 6,
       body: `
@@ -95,7 +112,7 @@ const SLIDES = [
   /* 04 · 자동화 */
   {
     h1: '매달 반복되는 일, <em>이제 맡기세요.</em>',
-    sub: '한 번 처리하고 끝내지 않아요. 다음 달부터 알아서 돌릴지 Ringo가 먼저 제안합니다.',
+    sub: '처리하고 끝이 아니라, 다음 달 자동 실행까지 제안합니다.',
     win: {
       ch: 'finance', meta: '멤버 6명', faces: ['jimin','elena','yujin'], more: 4,
       body: `
@@ -115,8 +132,8 @@ const SLIDES = [
 
   /* 05 · 주도권 & 보안 */
   {
-    h1: '읽는 채널도, 하는 일도 <em>팀이 정합니다.</em>',
-    sub: '연결한 채널만 읽어요. 되돌리기 어려운 작업은 실행 전에 반드시 먼저 물어봅니다.',
+    h1: '경계는 팀이 정하고, <em>Ringo는 그 안에서만.</em>',
+    sub: '연결한 소스만 읽고, 프로젝트별로 분리해 보관합니다.',
     custom: 'perms'
   }
 ];
@@ -127,62 +144,68 @@ const PEOPLE = ['yujin', 'dohyun', 'jimin', 'seoyeon'];
 
 /* 02 비주얼: 추상 그래프 대신 "각자 따로 vs 하나를 함께"를 직접 대비시킵니다.
    왼쪽은 사람마다 분리된 기억, 오른쪽은 하나로 모이는 공유 기억. */
+/* 02 비주얼: "각자 따로 vs 하나를 함께" 대비.
+   요소를 키우고 세로 공간을 끝까지 써서 여백이 뜨지 않게 배치. */
+const LX = [190, 330, 470, 610];      // 왼쪽 인물 x
+const RX = [990, 1130, 1270, 1410];   // 오른쪽 인물 x
+const AY = 196, AR = 46;              // 인물 y / 반지름
+
 const GRAPH_SVG = `
-      <svg viewBox="0 0 1428 470" width="1428" height="470">
+      <svg viewBox="0 0 1600 620" width="1600" height="620">
         <defs>
-          <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#f2e6cf"/><stop offset="100%" stop-color="#d9c19a"/>
+          <linearGradient id="goldb" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f4e9d4"/><stop offset="100%" stop-color="#d8bf96"/>
           </linearGradient>
           <filter id="softglow" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="16" result="b"/>
+            <feGaussianBlur stdDeviation="20" result="b"/>
             <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
         </defs>
 
-        <!-- 가운데 구분선 -->
-        <line x1="714" y1="34" x2="714" y2="436" stroke="#6b5c48" stroke-width="1.5"
-              stroke-dasharray="6 9" opacity=".5"/>
+        <line x1="800" y1="40" x2="800" y2="580" stroke="#6b5c48"
+              stroke-width="1.5" stroke-dasharray="7 10" opacity=".45"/>
 
-        <!-- ── 왼쪽: 다른 AI 도구 (각자 따로) ── -->
-        <text x="315" y="52" text-anchor="middle"
-              style="font:700 25px Pretendard,sans-serif;fill:#9b8d7c;letter-spacing:-.02em">다른 AI 도구</text>
-        ${[105, 245, 385, 525].map((x, i) => `
-        <clipPath id="cl${i}"><circle cx="${x}" cy="142" r="33"/></clipPath>
-        <image href="avatars/${PEOPLE[i]}.png" x="${x - 33}" y="109" width="66" height="66"
-               clip-path="url(#cl${i})" style="filter:grayscale(.75) brightness(.62)"/>
-        <circle cx="${x}" cy="142" r="33" fill="none" stroke="#5d5244" stroke-width="2"/>
-        <line x1="${x}" y1="180" x2="${x}" y2="252" stroke="#5d5244" stroke-width="1.6" opacity=".8"/>
-        <rect x="${x - 56}" y="252" width="112" height="92" rx="15"
-              fill="#2f2921" stroke="#544838" stroke-width="1.5"/>
-        ${[0, 1, 2].map(k => `<rect x="${x - 36}" y="${276 + k * 20}" width="${[70, 54, 62][k]}" height="7" rx="3.5" fill="#5d5244"/>`).join('')}
+        <!-- ── 왼쪽: 다른 AI 도구 ── -->
+        <text x="400" y="62" text-anchor="middle"
+              style="font:700 30px Pretendard,sans-serif;fill:#9b8d7c;letter-spacing:-.02em">다른 AI 도구</text>
+        ${LX.map((x, i) => `
+        <clipPath id="cl${i}"><circle cx="${x}" cy="${AY}" r="${AR}"/></clipPath>
+        <image href="avatars/${PEOPLE[i]}.png" x="${x - AR}" y="${AY - AR}"
+               width="${AR * 2}" height="${AR * 2}" clip-path="url(#cl${i})"
+               style="filter:grayscale(.8) brightness(.55)"/>
+        <circle cx="${x}" cy="${AY}" r="${AR}" fill="none" stroke="#5d5244" stroke-width="2.5"/>
+        <line x1="${x}" y1="${AY + AR + 6}" x2="${x}" y2="330" stroke="#5d5244" stroke-width="2" opacity=".75"/>
+        <rect x="${x - 60}" y="330" width="120" height="132" rx="18"
+              fill="#2f2921" stroke="#544838" stroke-width="1.8"/>
+        ${[0, 1, 2, 3].map(k => `<rect x="${x - 38}" y="${358 + k * 24}" width="${[76, 58, 68, 46][k]}" height="8" rx="4" fill="#5d5244"/>`).join('')}
         `).join('')}
-        <text x="315" y="392" text-anchor="middle"
-              style="font:600 22px Pretendard,sans-serif;fill:#8d8071;letter-spacing:-.025em">각자의 대화 기록 4개</text>
-        <text x="315" y="424" text-anchor="middle"
-              style="font:500 20px Pretendard,sans-serif;fill:#726758;letter-spacing:-.025em">서로 뭘 아는지 모릅니다</text>
+        <text x="400" y="524" text-anchor="middle"
+              style="font:700 27px Pretendard,sans-serif;fill:#8d8071;letter-spacing:-.025em">각자의 기억 4개</text>
+        <text x="400" y="566" text-anchor="middle"
+              style="font:500 23px Pretendard,sans-serif;fill:#6f6558;letter-spacing:-.025em">서로 뭘 아는지 모릅니다</text>
 
-        <!-- ── 오른쪽: Ringo (하나로 모임) ── -->
-        <text x="1071" y="52" text-anchor="middle"
-              style="font:700 25px Pretendard,sans-serif;fill:#e8d3ad;letter-spacing:-.02em">Ringo</text>
-        ${[861, 1001, 1141, 1281].map((x, i) => `
-        <path d="M${x} 180 C ${x} 226, ${1071 + (x - 1071) * 0.18} 232, ${1071 + (x - 1071) * 0.30} 264"
-              stroke="#c9b28f" stroke-width="2.4" fill="none" opacity=".9"/>
-        <clipPath id="cr${i}"><circle cx="${x}" cy="142" r="33"/></clipPath>
-        <image href="avatars/${PEOPLE[i]}.png" x="${x - 33}" y="109" width="66" height="66"
-               clip-path="url(#cr${i})"/>
-        <circle cx="${x}" cy="142" r="33" fill="none" stroke="#f3e9d6" stroke-width="2.5"/>
+        <!-- ── 오른쪽: Ringo ── -->
+        <text x="1200" y="62" text-anchor="middle"
+              style="font:700 30px Pretendard,sans-serif;fill:#e8d3ad;letter-spacing:-.02em">Ringo</text>
+        ${RX.map((x, i) => `
+        <path d="M${x} ${AY + AR + 6} C ${x} 292, ${1200 + (x - 1200) * 0.22} 300, ${1200 + (x - 1200) * 0.34} 336"
+              stroke="#c9b28f" stroke-width="3" fill="none" opacity=".92"/>
+        <clipPath id="cr${i}"><circle cx="${x}" cy="${AY}" r="${AR}"/></clipPath>
+        <image href="avatars/${PEOPLE[i]}.png" x="${x - AR}" y="${AY - AR}"
+               width="${AR * 2}" height="${AR * 2}" clip-path="url(#cr${i})"/>
+        <circle cx="${x}" cy="${AY}" r="${AR}" fill="none" stroke="#f3e9d6" stroke-width="3"/>
         `).join('')}
         <g filter="url(#softglow)">
-          <rect x="861" y="266" width="420" height="96" rx="20" fill="url(#gold)"/>
+          <rect x="940" y="336" width="520" height="126" rx="24" fill="url(#goldb)"/>
         </g>
-        <text x="1071" y="303" text-anchor="middle"
-              style="font:800 15px Pretendard,sans-serif;fill:#6b5433;letter-spacing:.14em">공유 기억</text>
-        <text x="1071" y="336" text-anchor="middle"
-              style="font:800 27px Pretendard,sans-serif;fill:#2a2016;letter-spacing:-.03em">하나의 두뇌</text>
-        <text x="1071" y="392" text-anchor="middle"
-              style="font:600 22px Pretendard,sans-serif;fill:#e2ceac;letter-spacing:-.025em">팀 전체가 하나를 함께</text>
-        <text x="1071" y="424" text-anchor="middle"
-              style="font:500 20px Pretendard,sans-serif;fill:#b8a68c;letter-spacing:-.025em">누가 물어도 같은 맥락으로 답합니다</text>
+        <text x="1200" y="382" text-anchor="middle"
+              style="font:800 18px Pretendard,sans-serif;fill:#6b5433;letter-spacing:.16em">공유 기억</text>
+        <text x="1200" y="428" text-anchor="middle"
+              style="font:800 36px Pretendard,sans-serif;fill:#2a2016;letter-spacing:-.03em">하나의 두뇌</text>
+        <text x="1200" y="524" text-anchor="middle"
+              style="font:700 27px Pretendard,sans-serif;fill:#e2ceac;letter-spacing:-.025em">팀이 함께 쓰는 기억 1개</text>
+        <text x="1200" y="566" text-anchor="middle"
+              style="font:500 23px Pretendard,sans-serif;fill:#b8a68c;letter-spacing:-.025em">누가 물어도 같은 맥락으로 답합니다</text>
       </svg>`;
 
 const GRAPH = `<div class="gfull">${GRAPH_SVG}</div>`;
@@ -197,50 +220,56 @@ const CHANNELS = [
 ];
 
 const PERMS = `
-  <div class="perms">
-    <div class="win pcard">
-      <div class="win-head">
-        <span class="ch">Ringo가 읽는 채널</span>
-        <span class="meta">팀이 직접 선택</span>
+  <div class="permswrap">
+    <div class="perms">
+      <div class="win pcard">
+        <div class="win-head">
+          <span class="ch">Ringo가 읽는 채널</span>
+          <span class="meta">팀이 직접 선택</span>
+        </div>
+        <div class="plist">
+          ${CHANNELS.map(([c, d, on]) => `
+          <div class="prow${on ? '' : ' off'}">
+            <div class="pmeta">
+              <div class="pname"><span class="hash">#</span>${c}</div>
+              <div class="pdesc">${d}</div>
+            </div>
+            <div class="tog${on ? ' on' : ''}"><i></i></div>
+          </div>`).join('')}
+        </div>
       </div>
-      <div class="plist">
-        ${CHANNELS.map(([c, d, on]) => `
-        <div class="prow${on ? '' : ' off'}">
-          <div class="pmeta">
-            <div class="pname"><span class="hash">#</span>${c}</div>
-            <div class="pdesc">${d}</div>
-          </div>
-          <div class="tog${on ? ' on' : ''}"><i></i></div>
-        </div>`).join('')}
-      </div>
-    </div>
-    <div class="pright">
+
       <div class="win ask">
-        <div class="msg" style="padding:19px 22px 18px">
+        <div class="msg">
           ${avRingo}
           <div class="mbody">
             <div class="mhead">
               <span class="mname">Ringo</span><span class="badge">앱</span><span class="mtime">오후 3:20</span>
             </div>
-            <div class="mtext">이 작업은 <strong>되돌리기 어려워요.</strong><br>정말 진행할까요?</div>
+            <div class="mtext">이 작업은 <strong>되돌릴 수 없어요.</strong><br>진행 전에 확인이 필요합니다.</div>
             <div class="acts"><span class="btn primary">승인</span><span class="btn">취소</span></div>
           </div>
         </div>
       </div>
-      <div class="seclist">
-        ${[['연결한 채널만 읽음', '팀이 켜둔 채널 외에는 접근하지 않아요'],
-           ['프로젝트별 데이터 분리', '팀 데이터는 각자의 프로젝트 안에만'],
-           ['자격 증명 암호화', 'SOC 2 준비 중']]
-          .map(([t, d]) => `
-        <div class="secrow"><span class="sdot">✓</span><div><b>${t}</b><i>${d}</i></div></div>`).join('')}
-      </div>
+    </div>
+
+    <div class="secbar">
+      ${[['연결한 소스만 읽음', '켜둔 채널 밖은 접근하지 않습니다'],
+         ['프로젝트별 접근 분리', '팀 데이터는 각자의 프로젝트 안에만'],
+         ['자격 증명 암호화', 'SOC 2 준비 중']]
+        .map(([t, d]) => `
+      <div class="secitem">
+        <span class="sdot">✓</span>
+        <div><b>${t}</b><i>${d}</i></div>
+      </div>`).join('')}
     </div>
   </div>`;
 
 const EXTRA = `
   /* Ringo 아바타: 검정 타일 + 크림 유령 (제품 실제 아바타) */
-  .av.ringo { background: #141413; padding: 0; }
-  .av.ringo svg { width: 100%; height: 100%; display: block; }
+  /* 배경/크기는 base.css에서 관리. 정령이 타일을 꽉 채우면 답답해 보여서 62%로 여백 확보 */
+  .av.ringo svg { width: 62%; height: 62%; display: block; }
+  .lockup .markimg svg { width: 60%; height: 60%; display: block; }
 
   /* 02 지식 그래프 다크 패널 */
   .gwrap {
@@ -254,34 +283,42 @@ const EXTRA = `
   .gwrap svg { display: block; width: 100%; height: auto; }
 
   /* 05 권한 패널 */
-  .perms { display: grid; grid-template-columns: 640px 1fr; gap: 30px; align-items: start; width: 1428px; }
+  .permswrap { display: flex; flex-direction: column; gap: 30px; width: 100%; }
+  .perms { display: grid; grid-template-columns: 1.05fr 1fr; gap: 32px; align-items: start; }
   .pcard .plist { padding: 6px 0 8px; }
-  .prow { display: flex; align-items: center; justify-content: space-between; padding: 13px 22px; }
+  .prow { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; }
   .prow + .prow { border-top: 1px solid #f1efed; }
-  .pname { font-size: 16px; font-weight: 800; color: var(--sk-ink); letter-spacing: -.01em; }
+  .pname { font-size: 17px; font-weight: 800; color: var(--sk-ink); letter-spacing: -.01em; }
   .pname .hash { color: var(--sk-muted); font-weight: 600; margin-right: 1px; }
-  .pdesc { font-size: 13px; color: var(--sk-muted); font-weight: 500; margin-top: 3px; }
+  .pdesc { font-size: 13.5px; color: var(--sk-muted); font-weight: 500; margin-top: 3px; }
   .prow.off .pname, .prow.off .pdesc { color: #b3afab; }
-  .tog { width: 46px; height: 27px; border-radius: 999px; background: #d8d5d2; position: relative; flex: none; }
-  .tog i { position: absolute; top: 3px; left: 3px; width: 21px; height: 21px; border-radius: 50%;
+  .tog { width: 48px; height: 28px; border-radius: 999px; background: #d8d5d2; position: relative; flex: none; }
+  .tog i { position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%;
            background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.22); }
   .tog.on { background: #2f6b45; }
-  .tog.on i { left: 22px; }
-  .pright { display: flex; flex-direction: column; gap: 22px; }
-  .ask .mtext { font-size: 16px; line-height: 1.5; }
-  .seclist { display: flex; flex-direction: column; gap: 14px; padding-left: 4px; }
-  .secrow { display: flex; align-items: flex-start; gap: 12px; }
-  .sdot { flex: none; width: 25px; height: 25px; border-radius: 8px; background: rgba(119,96,63,.13);
-          color: var(--brown); display: grid; place-items: center; font-size: 13px; font-weight: 900; }
-  .secrow b { display: block; font-size: 17px; font-weight: 800; color: var(--ink); letter-spacing: -.015em; }
-  .secrow i { display: block; font-style: normal; font-size: 14px; font-weight: 500; color: var(--muted); margin-top: 2px; }
+  .tog.on i { left: 23px; }
+  .ask .msg { padding: 22px 24px 20px; }
+  .ask .mtext { font-size: 17px; line-height: 1.55; }
+
+  /* 보안 항목: 오른쪽 컬럼에 끼우면 폭이 부족해 줄바꿈이 지저분해져서
+     하단 전체 폭으로 빼고 3개로 정리 */
+  .secbar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .secitem {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: rgba(255,252,244,.72);
+    border: 1px solid rgba(119,96,63,.15);
+    border-radius: 16px; padding: 20px 22px;
+  }
+  .sdot { flex: none; width: 30px; height: 30px; border-radius: 10px;
+          background: rgba(47,107,69,.12); color: #2f6b45;
+          display: grid; place-items: center; font-size: 15px; font-weight: 900; }
+  .secitem b { display: block; font-size: 20px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+  .secitem i { display: block; font-style: normal; font-size: 15px; font-weight: 500;
+               color: var(--muted); margin-top: 4px; letter-spacing: -.015em; }
 `;
 
 const slideHtml = s => `
 <div class="slide${s.inverted ? ' inverted' : ''}">
-  <div class="top">
-    <div class="lockup"><span class="markimg">${SPIRIT}</span><span>Ringo</span></div>
-  </div>
   <div class="copy">
     <h1>${s.h1}</h1>
     <div class="sub">${s.sub}</div>
@@ -296,29 +333,36 @@ const slideHtml = s => `
              <span class="meta">${s.win.meta}</span>
            </div>
            <div class="win-body">${s.win.body}</div>
-           <div class="composer">${s.win.composer}</div>
-           <div style="height:16px"></div>
+           <div class="winpad"></div>
          </div>`}
   </div>
 </div>`;
 
 const FIT_JS = `
-  /* 비주얼을 남은 세로 공간에 맞춤. 내용이 캔버스(1000px) 밖으로 잘리지 않게 합니다. */
-  const SLIDE_H = 1000, BOTTOM = 46, BASE_W = 1428, MIN = 0.72, MAX = 1.62;
+  /* 입력창을 없앤 대신 창을 하단으로 흘려보내고 내부 요소를 키웁니다.
+     창 맨 아래 .winpad(=PAD px) 만큼만 캔버스 밖으로 나가게 역산하므로
+     메시지·버튼·리액션은 절대 잘리지 않습니다. */
+  const SLIDE_H = 1000, BASE_W = 1428, PAD = 92, MIN = 0.72, MAX = 2.1;
   async function fit() {
     await document.fonts.ready;
     document.querySelectorAll('.slide').forEach(slide => {
       const box = slide.querySelector('.fit');
       const el = box.firstElementChild;
       if (el.classList.contains('gfull')) { el.dataset.zoom = '1'; return; }
+
       const top = box.getBoundingClientRect().top - slide.getBoundingClientRect().top;
-      const avail = SLIDE_H - top - BOTTOM;
+      const bleeds = !!el.querySelector('.winpad');
+      const avail = SLIDE_H - top - (bleeds ? 0 : 46);
+
       let z = 1.2;
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 9; i++) {
         el.style.zoom = '';
         el.style.width = (BASE_W / z) + 'px';
         const h = el.getBoundingClientRect().height;
-        const next = Math.min(MAX, Math.max(MIN, avail / h));
+        // bleeds: (h - PAD) * z = avail  → PAD 만큼이 화면 밖으로
+        const denom = bleeds ? Math.max(1, h - PAD) : h;
+        const cap = bleeds ? MAX : 1.45;
+        const next = Math.min(cap, Math.max(MIN, avail / denom));
         if (Math.abs(next - z) < 0.003) { z = next; break; }
         z = next;
       }
@@ -330,8 +374,7 @@ const FIT_JS = `
     preview();
   }
 
-  /* ?preview=1 로 열면 5장을 한 화면에 축소해서 보여줍니다.
-     캡쳐는 쿼리 없이 여는 원본 URL을 쓰므로 결과물에는 영향이 없습니다. */
+  /* ?preview=1 로 열면 5장을 한 화면에 축소해서 보여줍니다. */
   function preview() {
     if (!location.search.includes('preview')) return;
     document.documentElement.classList.add('preview');

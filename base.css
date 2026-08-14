@@ -66,7 +66,7 @@ body {
   width: 1600px;
   height: 1000px;
   overflow: hidden;
-  padding: 64px 86px 0;
+  padding: 78px 86px 0;
   background:
     radial-gradient(58% 42% at 82% 4%, rgba(255, 250, 236, .95) 0%, rgba(255, 250, 236, 0) 62%),
     radial-gradient(70% 55% at 12% 96%, rgba(214, 226, 199, .40) 0%, rgba(214, 226, 199, 0) 60%),
@@ -114,7 +114,7 @@ body {
 }
 
 /* ── 카피 블록 ───────────────────────────── */
-.copy { position: relative; z-index: 2; margin-top: 46px; }
+.copy { position: relative; z-index: 2; margin-top: 0; }
 .eyebrow {
   display: inline-block;
   font-size: 15px;
@@ -137,14 +137,14 @@ h1 {
 }
 h1 em { font-style: normal; color: #6b5433; }
 .sub {
-  margin-top: 16px;
-  font-size: 23px;
+  margin-top: 18px;
+  font-size: 31px;
   font-weight: 500;
   line-height: 1.52;
   letter-spacing: -.015em;
   color: var(--muted);
   word-break: keep-all;
-  max-width: 1080px;
+  max-width: 1240px;
 }
 
 /* ── Slack 창 목업 ───────────────────────── */
@@ -353,3 +353,21 @@ html.preview .pvlabel {
   display: grid; place-items: center;
   font-size: 11px; font-weight: 800; color: #6f6155; letter-spacing: -.03em;
 }
+
+
+/* ── Ringo 아바타/워드마크 마크: 웜 에스프레소 + 은은한 발광 ──
+   단색 검정 + 납작한 정령은 사진 아바타 옆에서 초라해 보여서
+   앱 아이콘과 같은 처리를 적용. */
+.av.ringo, .lockup .markimg {
+  background:
+    radial-gradient(62% 58% at 50% 44%, #4a3a24 0%, rgba(74,58,36,0) 74%),
+    linear-gradient(155deg, #33281b 0%, #1c1610 100%);
+  display: grid; place-items: center;
+}
+.av.ringo { border-radius: 9px; overflow: hidden; }
+.av.ringo svg { width: 74%; height: 74%; display: block; }
+.lockup .markimg svg { width: 70%; height: 70%; display: block; }
+
+
+/* 창 하단 여백. 이 높이만큼만 캔버스 밖으로 흘러나가 "잘린 창" 느낌을 만듭니다. */
+.winpad { height: 92px; }
