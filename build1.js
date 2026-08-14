@@ -16,7 +16,7 @@ const path = require('path');
 const DIR = __dirname;
 
 /* 제품 실제 마스코트 (ringoai.app DOM에서 가져온 path) */
-const SPIRIT = `<svg viewBox="291 282 662 715" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+const SPIRIT = `<svg viewBox="279 140 694 866" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
   <defs>
     <linearGradient id="sBody" x1="28%" y1="4%" x2="72%" y2="100%">
       <stop offset="0%" stop-color="#fefdfb"/><stop offset="52%" stop-color="#f9f3ea"/><stop offset="100%" stop-color="#ebe0d0"/>
@@ -29,6 +29,8 @@ const SPIRIT = `<svg viewBox="291 282 662 715" preserveAspectRatio="xMidYMid mee
     </radialGradient>
     <clipPath id="sClip"><path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z"/></clipPath>
   </defs>
+  <!-- 꼭지 (spirit-character-stem) -->
+  <path d="M 610 293 C 602 237 618 185 648 150 C 657 139 672 139 678 150 C 684 164 675 188 657 210 C 642 230 626 260 622 286 Z" fill="url(#sBody)"/>
   <path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z" fill="url(#sBody)"/>
   <ellipse cx="520" cy="430" rx="250" ry="200" fill="url(#sGloss)" clip-path="url(#sClip)"/>
   <ellipse cx="436" cy="585" rx="37" ry="57" fill="url(#sEye)"/>
