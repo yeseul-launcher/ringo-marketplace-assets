@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>Ringo 마켓플레이스 이미지 · 1차 구조 복원</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  /* Ringo 아바타: 검정 타일 + 크림 유령 (제품 실제 아바타) */
+  .av.ringo { background: #141413; padding: 0; }
+  .av.ringo svg { width: 100%; height: 100%; display: block; }
+
+  /* 02 지식 그래프 다크 패널 */
+  .gwrap {
+    margin: 12px 22px 0; border-radius: 14px; padding: 10px 14px 6px;
+    background:
+      radial-gradient(72% 90% at 50% 46%, #40321f 0%, rgba(64,50,31,0) 68%),
+      linear-gradient(152deg, #33281b 0%, #241c13 100%);
+    border: 1px solid rgba(201,178,143,.20);
+    box-shadow: inset 0 1px 0 rgba(233,214,181,.10);
+  }
+  .gwrap svg { display: block; width: 100%; height: auto; }
+
+  /* 05 권한 패널 */
+  .perms { display: grid; grid-template-columns: 640px 1fr; gap: 30px; align-items: start; width: 1428px; }
+  .pcard .plist { padding: 6px 0 8px; }
+  .prow { display: flex; align-items: center; justify-content: space-between; padding: 13px 22px; }
+  .prow + .prow { border-top: 1px solid #f1efed; }
+  .pname { font-size: 16px; font-weight: 800; color: var(--sk-ink); letter-spacing: -.01em; }
+  .pname .hash { color: var(--sk-muted); font-weight: 600; margin-right: 1px; }
+  .pdesc { font-size: 13px; color: var(--sk-muted); font-weight: 500; margin-top: 3px; }
+  .prow.off .pname, .prow.off .pdesc { color: #b3afab; }
+  .tog { width: 46px; height: 27px; border-radius: 999px; background: #d8d5d2; position: relative; flex: none; }
+  .tog i { position: absolute; top: 3px; left: 3px; width: 21px; height: 21px; border-radius: 50%;
+           background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.22); }
+  .tog.on { background: #2f6b45; }
+  .tog.on i { left: 22px; }
+  .pright { display: flex; flex-direction: column; gap: 22px; }
+  .ask .mtext { font-size: 16px; line-height: 1.5; }
+  .seclist { display: flex; flex-direction: column; gap: 14px; padding-left: 4px; }
+  .secrow { display: flex; align-items: flex-start; gap: 12px; }
+  .sdot { flex: none; width: 25px; height: 25px; border-radius: 8px; background: rgba(119,96,63,.13);
+          color: var(--brown); display: grid; place-items: center; font-size: 13px; font-weight: 900; }
+  .secrow b { display: block; font-size: 17px; font-weight: 800; color: var(--ink); letter-spacing: -.015em; }
+  .secrow i { display: block; font-style: normal; font-size: 14px; font-weight: 500; color: var(--muted); margin-top: 2px; }
+</style>
+</head><body>
+
+<div class="slide">
+  <div class="top">
+    <div class="lockup"><span class="markimg"><svg viewBox="250 240 760 800" aria-hidden="true"><path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z" fill="#f0eee6"/><ellipse cx="436" cy="585" rx="37" ry="57" fill="#141413"/><ellipse cx="559" cy="585" rx="37" ry="57" fill="#141413"/></svg></span><span>Ringo</span></div>
+  </div>
+  <div class="copy">
+    <h1>팀의 AI가 <em>먼저 말을 걸어요.</em></h1>
+    <div class="sub">아무도 묻지 않았습니다. 팀이 3주 전에 내린 결정을 Ringo가 먼저 기억해 냈어요.</div>
+  </div>
+  <div class="fit">
+    <div class="win">
+           <div class="win-head">
+             <span class="ch"><span class="hash">#</span>product</span>
+             
+        <div class="facepile">
+          <img src="avatars/yujin.png" alt=""><img src="avatars/sam.png" alt=""><img src="avatars/elena.png" alt=""><img src="avatars/seoyeon.png" alt="">
+          <span class="fmore">+10</span>
+        </div>
+             <span class="meta">멤버 14명</span>
+           </div>
+           <div class="win-body">
+      
+      <div class="msg">
+        <div class="av person"><img src="avatars/yujin.png" alt=""></div>
+        <div class="mbody">
+          <div class="mhead">
+            <span class="mname">최유진</span>
+            
+            <span class="mtime">오후 2:14</span>
+          </div>
+          <div class="mtext">우리 그냥 다 <strong>연간 결제만</strong> 받는 걸로 갈까요? 매출 예측도 깔끔해지고요</div>
+        </div>
+      </div>
+      
+      <div class="msg">
+        <div class="av ringo"><svg viewBox="250 240 760 800" aria-hidden="true"><path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z" fill="#f0eee6"/><ellipse cx="436" cy="585" rx="37" ry="57" fill="#141413"/><ellipse cx="559" cy="585" rx="37" ry="57" fill="#141413"/></svg></div>
+        <div class="mbody">
+          <div class="mhead">
+            <span class="mname">Ringo</span>
+            <span class="badge">앱</span>
+            <span class="mtime">방금</span>
+          </div>
+          <div class="mtext">이 논의는 <strong>3주 전에</strong> 이미 결론이 났어요. 연간 전용은 SMB 체험 4건이 이탈해서 둘 다 유지하기로 했죠. 같은 논의를 반복하지 않게 다시 가져왔어요:</div>
+         <div class="att">
+           <div class="atitle">결정 · 가격</div>
+           <div class="aline">#product · 6월 9일</div>
+           <div class="aquote">“월간 + 연간 둘 다 유지. 연간 전용은 테스트에서 SMB 체험 4건을 잃었음.”</div>
+           <div class="afoot">Sam · 당시 👍 6</div>
+         </div>
+         <div class="rx"><span class="on">🙌 5</span><span>👀 3</span></div>
+        </div>
+      </div></div>
+           <div class="composer">#product에 메시지 보내기</div>
+           <div style="height:16px"></div>
+         </div>
+  </div>
+</div>
+
+<div class="slide inverted">
+  <div class="top">
+    <div class="lockup"><span class="markimg"><svg viewBox="250 240 760 800" aria-hidden="true"><path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z" fill="#f0eee6"/><ellipse cx="436" cy="585" rx="37" ry="57" fill="#141413"/><ellipse cx="559" cy="585" rx="37" ry="57" fill="#141413"/></svg></span><span>Ringo</span></div>
+  </div>
+  <div class="copy">
+    <h1>팀 전체가 함께 쓰는 <em>하나의 두뇌.</em></h1>
+    <div class="sub">50개의 개인 채팅 기록이 아니라, 모든 결정과 사람과 업무를 잇는 살아 있는 공유 기억.</div>
+  </div>
+  <div class="fit">
+    <div class="gfull">
+      <svg viewBox="0 0 1428 470" width="1428" height="470">
+        <defs>
+          <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f2e6cf"/><stop offset="100%" stop-color="#d9c19a"/>
+          </linearGradient>
+          <filter id="softglow" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="16" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- 가운데 구분선 -->
+        <line x1="714" y1="34" x2="714" y2="436" stroke="#6b5c48" stroke-width="1.5"
+              stroke-dasharray="6 9" opacity=".5"/>
+
+        <!-- ── 왼쪽: 다른 AI 도구 (각자 따로) ── -->
+        <text x="315" y="52" text-anchor="middle"
+              style="font:700 25px Pretendard,sans-serif;fill:#9b8d7c;letter-spacing:-.02em">다른 AI 도구</text>
+        
+        <clipPath id="cl0"><circle cx="105" cy="142" r="33"/></clipPath>
+        <image href="avatars/yujin.png" x="72" y="109" width="66" height="66"
+               clip-path="url(#cl0)" style="filter:grayscale(.75) brightness(.62)"/>
+        <circle cx="105" cy="142" r="33" fill="none" stroke="#5d5244" stroke-width="2"/>
+        <line x1="105" y1="180" x2="105" y2="252" stroke="#5d5244" stroke-width="1.6" opacity=".8"/>
+        <rect x="49" y="252" width="112" height="92" rx="15"
+              fill="#2f2921" stroke="#544838" stroke-width="1.5"/>
+        <rect x="69" y="276" width="70" height="7" rx="3.5" fill="#5d5244"/><rect x="69" y="296" width="54" height="7" rx="3.5" fill="#5d5244"/><rect x="69" y="316" width="62" height="7" rx="3.5" fill="#5d5244"/>
+        
+        <clipPath id="cl1"><circle cx="245" cy="142" r="33"/></clipPath>
+        <image href="avatars/dohyun.png" x="212" y="109" width="66" height="66"
+               clip-path="url(#cl1)" style="filter:grayscale(.75) brightness(.62)"/>
+        <circle cx="245" cy="142" r="33" fill="none" stroke="#5d5244" stroke-width="2"/>
+        <line x1="245" y1="180" x2="245" y2="252" stroke="#5d5244" stroke-width="1.6" opacity=".8"/>
+        <rect x="189" y="252" width="112" height="92" rx="15"
+              fill="#2f2921" stroke="#544838" stroke-width="1.5"/>
+        <rect x="209" y="276" width="70" height="7" rx="3.5" fill="#5d5244"/><rect x="209" y="296" width="54" height="7" rx="3.5" fill="#5d5244"/><rect x="209" y="316" width="62" height="7" rx="3.5" fill="#5d5244"/>
+        
+        <clipPath id="cl2"><circle cx="385" cy="142" r="33"/></clipPath>
+        <image href="avatars/jimin.png" x="352" y="109" width="66" height="66"
+               clip-path="url(#cl2)" style="filter:grayscale(.75) brightness(.62)"/>
+        <circle cx="385" cy="142" r="33" fill="none" stroke="#5d5244" stroke-width="2"/>
+        <line x1="385" y1="180" x2="385" y2="252" stroke="#5d5244" stroke-width="1.6" opacity=".8"/>
+        <rect x="329" y="252" width="112" height="92" rx="15"
+              fill="#2f2921" stroke="#544838" stroke-width="1.5"/>
+        <rect x="349" y="276" width="70" height="7" rx="3.5" fill="#5d5244"/><rect x="349" y="296" width="54" height="7" rx="3.5" fill="#5d5244"/><rect x="349" y="316" width="62" height="7" rx="3.5" fill="#5d5244"/>
+        
+        <clipPath id="cl3"><circle cx="525" cy="142" r="33"/></clipPath>
+        <image href="avatars/seoyeon.png" x="492" y="109" width="66" height="66"
+               clip-path="url(#cl3)" style="filter:grayscale(.75) brightness(.62)"/>
+        <circle cx="525" cy="142" r="33" fill="none" stroke="#5d5244" stroke-width="2"/>
+        <line x1="525" y1="180" x2="525" y2="252" stroke="#5d5244" stroke-width="1.6" opacity=".8"/>
+        <rect x="469" y="252" width="112" height="92" rx="15"
+              fill="#2f2921" stroke="#544838" stroke-width="1.5"/>
+        <rect x="489" y="276" width="70" height="7" rx="3.5" fill="#5d5244"/><rect x="489" y="296" width="54" height="7" rx="3.5" fill="#5d5244"/><rect x="489" y="316" width="62" height="7" rx="3.5" fill="#5d5244"/>
+        
+        <text x="315" y="392" text-anchor="middle"
+              style="font:600 22px Pretendard,sans-serif;fill:#8d8071;letter-spacing:-.025em">각자의 대화 기록 4개</text>
+        <text x="315" y="424" text-anchor="middle"
+              style="font:500 20px Pretendard,sans-serif;fill:#726758;letter-spacing:-.025em">서로 뭘 아는지 모릅니다</text>
+
+        <!-- ── 오른쪽: Ringo (하나로 모임) ── -->
+        <text x="1071" y="52" text-anchor="middle"
+              style="font:700 25px Pretendard,sans-serif;fill:#e8d3ad;letter-spacing:-.02em">Ringo</text>
+        
+        <path d="M861 180 C 861 226, 1033.2 232, 1008 264"
+              stroke="#c9b28f" stroke-width="2.4" fill="none" opacity=".9"/>
+        <clipPath id="cr0"><circle cx="861" cy="142" r="33"/></clipPath>
+        <image href="avatars/yujin.png" x="828" y="109" width="66" height="66"
+               clip-path="url(#cr0)"/>
+        <circle cx="861" cy="142" r="33" fill="none" stroke="#f3e9d6" stroke-width="2.5"/>
+        
+        <path d="M1001 180 C 1001 226, 1058.4 232, 1050 264"
+              stroke="#c9b28f" stroke-width="2.4" fill="none" opacity=".9"/>
+        <clipPath id="cr1"><circle cx="1001" cy="142" r="33"/></clipPath>
+        <image href="avatars/dohyun.png" x="968" y="109" width="66" height="66"
+               clip-path="url(#cr1)"/>
+        <circle cx="1001" cy="142" r="33" fill="none" stroke="#f3e9d6" stroke-width="2.5"/>
+        
+        <path d="M1141 180 C 1141 226, 1083.6 232, 1092 264"
+              stroke="#c9b28f" stroke-width="2.4" fill="none" opacity=".9"/>
+        <clipPath id="cr2"><circle cx="1141" cy="142" r="33"/></clipPath>
+        <image href="avatars/jimin.png" x="1108" y="109" width="66" height="66"
+               clip-path="url(#cr2)"/>
+        <circle cx="1141" cy="142" r="33" fill="none" stroke="#f3e9d6" stroke-width="2.5"/>
+        
+        <path d="M1281 180 C 1281 226, 1108.8 232, 1134 264"
+              stroke="#c9b28f" stroke-width="2.4" fill="none" opacity=".9"/>
+        <clipPath id="cr3"><circle cx="1281" cy="142" r="33"/></clipPath>
+        <image href="avatars/seoyeon.png" x="1248" y="109" width="66" height="66"
+               clip-path="url(#cr3)"/>
+        <circle cx="1281" cy="142" r="33" fill="none" stroke="#f3e9d6" stroke-width="2.5"/>
+        
+        <g filter="url(#softglow)">
+          <rect x="861" y="266" width="420" height="96" rx="20" fill="url(#gold)"/>
+        </g>
+        <text x="1071" y="303" text-anchor="middle"
+              style="font:800 15px Pretendard,sans-serif;fill:#6b5433;letter-spacing:.14em">공유 기억</text>
+        <text x="1071" y="336" text-anchor="middle"
+              style="font:800 27px Pretendard,sans-serif;fill:#2a2016;letter-spacing:-.03em">하나의 두뇌</text>
+        <text x="1071" y="392" text-anchor="middle"
+              style="font:600 22px Pretendard,sans-serif;fill:#e2ceac;letter-spacing:-.025em">팀 전체가 하나를 함께</text>
+        <text x="1071" y="424" text-anchor="middle"
+              style="font:500 20px Pretendard,sans-serif;fill:#b8a68c;letter-spacing:-.025em">누가 물어도 같은 맥락으로 답합니다</text>
+      </svg></div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="top">
+    <div class="lockup"><span class="markimg"><svg viewBox="250 240 760 800" aria-hidden="true"><path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z" fill="#f0eee6"/><ellipse cx="436" cy="585" rx="37" ry="57" fill="#141413"/><ellipse cx="559" cy="585" rx="37" ry="57" fill="#141413"/></svg></span><span>Ringo</span></div>
+  </div>
+  <div class="copy">
+    <h1>답만 하지 않아요. <em>일을 끝냅니다.</em></h1>
+    <div class="sub">원인을 찾고 수정본까지 올려둡니다. 머지할지 말지, 사람이 결정할 것만 남겨두고요.</div>
+  </div>
+  <div class="fit">
+    <div class="win">
+           <div class="win-head">
+             <span class="ch"><span class="hash">#</span>eng-alerts</span>
+             
+        <div class="facepile">
+          <img src="avatars/dohyun.png" alt=""><img src="avatars/sam.png" alt=""><img src="avatars/jimin.png" alt="">
+          <span class="fmore">+6</span>
+        </div>
+             <span class="meta">멤버 9명</span>
+           </div>
+           <div class="win-body">
+      
+      <div class="msg">
+        <div class="av person"><img src="avatars/dohyun.png" alt=""></div>
+        <div class="mbody">
+          <div class="mhead">
+            <span class="mname">김도현</span>
+            
+            <span class="mtime">오전 9:41</span>
+          </div>
+          <div class="mtext"><span class="mention">@Ringo</span> 가입 웹훅이 아침부터 500 오류가 나요. 원인을 추적해줄래요?</div>
+        </div>
+      </div>
+      
+      <div class="msg">
+        <div class="av ringo"><svg viewBox="250 240 760 800" aria-hidden="true"><path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z" fill="#f0eee6"/><ellipse cx="436" cy="585" rx="37" ry="57" fill="#141413"/><ellipse cx="559" cy="585" rx="37" ry="57" fill="#141413"/></svg></div>
+        <div class="mbody">
+          <div class="mhead">
+            <span class="mname">Ringo</span>
+            <span class="badge">앱</span>
+            <span class="mtime">방금</span>
+          </div>
+          <div class="mtext">PR #4821 이후 발생한 <strong>null 이메일</strong>이 원인이에요. 안전한 수정안을 준비했어요.</div>
+         <div class="steps">
+           <div class="step"><span class="dot">✓</span>수정본 PR #4830 초안 작성 <span class="tag">· 테스트 통과</span></div>
+           <div class="step"><span class="dot">✓</span>인시던트 등록 <span class="tag">· 상태 페이지 업데이트</span></div>
+         </div>
+         <div class="acts"><span class="btn primary">PR 병합</span><span class="btn">수정 요청</span></div>
+        </div>
+      </div></div>
+           <div class="composer">#eng-alerts에 메시지 보내기</div>
+           <div style="height:16px"></div>
+         </div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="top">
+    <div class="lockup"><span class="markimg"><svg viewBox="250 240 760 800" aria-hidden="true"><path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z" fill="#f0eee6"/><ellipse cx="436" cy="585" rx="37" ry="57" fill="#141413"/><ellipse cx="559" cy="585" rx="37" ry="57" fill="#141413"/></svg></span><span>Ringo</span></div>
+  </div>
+  <div class="copy">
+    <h1>매달 반복되는 일, <em>이제 맡기세요.</em></h1>
+    <div class="sub">한 번 처리하고 끝내지 않아요. 다음 달부터 알아서 돌릴지 Ringo가 먼저 제안합니다.</div>
+  </div>
+  <div class="fit">
+    <div class="win">
+           <div class="win-head">
+             <span class="ch"><span class="hash">#</span>finance</span>
+             
+        <div class="facepile">
+          <img src="avatars/jimin.png" alt=""><img src="avatars/elena.png" alt=""><img src="avatars/yujin.png" alt="">
+          <span class="fmore">+4</span>
+        </div>
+             <span class="meta">멤버 6명</span>
+           </div>
+           <div class="win-body">
+      
+      <div class="msg">
+        <div class="av person"><img src="avatars/jimin.png" alt=""></div>
+        <div class="mbody">
+          <div class="mhead">
+            <span class="mname">박지민</span>
+            
+            <span class="mtime">오후 5:02</span>
+          </div>
+          <div class="mtext"><span class="mention">@Ringo</span> 이번 달 인보이스 대사하고 이상한 거 있으면 짚어줘.</div>
+        </div>
+      </div>
+      
+      <div class="msg">
+        <div class="av ringo"><svg viewBox="250 240 760 800" aria-hidden="true"><path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z" fill="#f0eee6"/><ellipse cx="436" cy="585" rx="37" ry="57" fill="#141413"/><ellipse cx="559" cy="585" rx="37" ry="57" fill="#141413"/></svg></div>
+        <div class="mbody">
+          <div class="mhead">
+            <span class="mname">Ringo</span>
+            <span class="badge">앱</span>
+            <span class="mtime">방금</span>
+          </div>
+          <div class="mtext">Stripe + QuickBooks에서 인보이스 <strong>312건</strong>을 대사했어요.</div>
+         <div class="steps">
+           <div class="step"><span class="dot warn">!</span>이상 발견: ACME에 <strong>약 $2,400 과다 청구</strong></div>
+           <div class="step"><span class="dot">✓</span>ACME 환불 이메일 초안 작성</div>
+           <div class="step"><span class="dot file">↓</span>월말 마감 자료 준비 완료 <span class="tag">· Excel · 시트 6개</span></div>
+         </div>
+         <div class="acts"><span class="btn primary">매달 자동 실행</span><span class="btn">나중에</span></div>
+        </div>
+      </div></div>
+           <div class="composer">#finance에 메시지 보내기</div>
+           <div style="height:16px"></div>
+         </div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="top">
+    <div class="lockup"><span class="markimg"><svg viewBox="250 240 760 800" aria-hidden="true"><path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z" fill="#f0eee6"/><ellipse cx="436" cy="585" rx="37" ry="57" fill="#141413"/><ellipse cx="559" cy="585" rx="37" ry="57" fill="#141413"/></svg></span><span>Ringo</span></div>
+  </div>
+  <div class="copy">
+    <h1>읽는 채널도, 하는 일도 <em>팀이 정합니다.</em></h1>
+    <div class="sub">연결한 채널만 읽어요. 되돌리기 어려운 작업은 실행 전에 반드시 먼저 물어봅니다.</div>
+  </div>
+  <div class="fit">
+    
+  <div class="perms">
+    <div class="win pcard">
+      <div class="win-head">
+        <span class="ch">Ringo가 읽는 채널</span>
+        <span class="meta">팀이 직접 선택</span>
+      </div>
+      <div class="plist">
+        
+        <div class="prow">
+          <div class="pmeta">
+            <div class="pname"><span class="hash">#</span>product</div>
+            <div class="pdesc">제품 논의 · 결정 기록</div>
+          </div>
+          <div class="tog on"><i></i></div>
+        </div>
+        <div class="prow">
+          <div class="pmeta">
+            <div class="pname"><span class="hash">#</span>eng-alerts</div>
+            <div class="pdesc">장애 · 배포 알림</div>
+          </div>
+          <div class="tog on"><i></i></div>
+        </div>
+        <div class="prow">
+          <div class="pmeta">
+            <div class="pname"><span class="hash">#</span>finance</div>
+            <div class="pdesc">인보이스 · 지출</div>
+          </div>
+          <div class="tog on"><i></i></div>
+        </div>
+        <div class="prow off">
+          <div class="pmeta">
+            <div class="pname"><span class="hash">#</span>hr-private</div>
+            <div class="pdesc">연결 안 함</div>
+          </div>
+          <div class="tog"><i></i></div>
+        </div>
+        <div class="prow off">
+          <div class="pmeta">
+            <div class="pname"><span class="hash">#</span>exec-private</div>
+            <div class="pdesc">연결 안 함</div>
+          </div>
+          <div class="tog"><i></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="pright">
+      <div class="win ask">
+        <div class="msg" style="padding:19px 22px 18px">
+          <div class="av ringo"><svg viewBox="250 240 760 800" aria-hidden="true"><path d="M627 283 C487 283 387 324 349 424 C320 501 330 628 342 701 C351 756 326 807 303 842 C279 880 295 916 324 925 C353 934 380 925 404 915 C425 906 438 918 454 937 C486 974 525 993 562 980 C594 969 611 946 638 951 C670 957 689 983 718 992 C758 1005 792 994 820 965 C891 891 929 791 948 666 C969 526 938 407 866 341 C808 288 720 281 627 283 Z" fill="#f0eee6"/><ellipse cx="436" cy="585" rx="37" ry="57" fill="#141413"/><ellipse cx="559" cy="585" rx="37" ry="57" fill="#141413"/></svg></div>
+          <div class="mbody">
+            <div class="mhead">
+              <span class="mname">Ringo</span><span class="badge">앱</span><span class="mtime">오후 3:20</span>
+            </div>
+            <div class="mtext">이 작업은 <strong>되돌리기 어려워요.</strong><br>정말 진행할까요?</div>
+            <div class="acts"><span class="btn primary">승인</span><span class="btn">취소</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="seclist">
+        
+        <div class="secrow"><span class="sdot">✓</span><div><b>연결한 채널만 읽음</b><i>팀이 켜둔 채널 외에는 접근하지 않아요</i></div></div>
+        <div class="secrow"><span class="sdot">✓</span><div><b>프로젝트별 데이터 분리</b><i>팀 데이터는 각자의 프로젝트 안에만</i></div></div>
+        <div class="secrow"><span class="sdot">✓</span><div><b>자격 증명 암호화</b><i>SOC 2 준비 중</i></div></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<script>
+  /* 비주얼을 남은 세로 공간에 맞춤. 내용이 캔버스(1000px) 밖으로 잘리지 않게 합니다. */
+  const SLIDE_H = 1000, BOTTOM = 46, BASE_W = 1428, MIN = 0.72, MAX = 1.62;
+  async function fit() {
+    await document.fonts.ready;
+    document.querySelectorAll('.slide').forEach(slide => {
+      const box = slide.querySelector('.fit');
+      const el = box.firstElementChild;
+      if (el.classList.contains('gfull')) { el.dataset.zoom = '1'; return; }
+      const top = box.getBoundingClientRect().top - slide.getBoundingClientRect().top;
+      const avail = SLIDE_H - top - BOTTOM;
+      let z = 1.2;
+      for (let i = 0; i < 8; i++) {
+        el.style.zoom = '';
+        el.style.width = (BASE_W / z) + 'px';
+        const h = el.getBoundingClientRect().height;
+        const next = Math.min(MAX, Math.max(MIN, avail / h));
+        if (Math.abs(next - z) < 0.003) { z = next; break; }
+        z = next;
+      }
+      el.style.width = (BASE_W / z) + 'px';
+      el.style.zoom = z;
+      el.dataset.zoom = z.toFixed(3);
+    });
+    document.title = 'ready';
+    preview();
+  }
+
+  /* ?preview=1 로 열면 5장을 한 화면에 축소해서 보여줍니다.
+     캡쳐는 쿼리 없이 여는 원본 URL을 쓰므로 결과물에는 영향이 없습니다. */
+  function preview() {
+    if (!location.search.includes('preview')) return;
+    document.documentElement.classList.add('preview');
+    const fitScale = () => {
+      const s = Math.min(0.9, (window.innerWidth - 80) / 1600);
+      document.documentElement.style.setProperty('--pv', s);
+    };
+    fitScale();
+    window.addEventListener('resize', fitScale);
+    document.querySelectorAll('.slide').forEach((sl, i) => {
+      const t = document.createElement('div');
+      t.className = 'pvlabel';
+      t.textContent = String(i + 1).padStart(2, '0') + ' / 05   ·   1600 × 1000';
+      sl.after(t);
+    });
+  }
+
+  fit();
+</script>
+</body></html>

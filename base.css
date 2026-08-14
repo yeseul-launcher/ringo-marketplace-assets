@@ -1,0 +1,355 @@
+/* Ringo · Slack Marketplace 소개 이미지 공용 스타일
+   1600x1000 (8:5) — Slack Marketplace 규격
+   컬러/서체는 ringoai.app 라이브 사이트에서 실측 추출 */
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('fonts/PretendardVariable.woff2') format('woff2-variations');
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'AnthropicSans';
+  src: url('fonts/AnthropicSans-Roman.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'AnthropicSerif';
+  src: url('fonts/AnthropicSerif-Roman.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  /* 페이퍼 배경 (히어로 하늘에서 샘플링) */
+  --paper-top: #fdf2e0;
+  --paper-mid: #f9e5cc;
+  --paper-bot: #efd0ad;
+
+  /* 브랜드 브라운 (워드마크·CTA 실측값 #77603f) */
+  --brown: #77603f;
+  --brown-deep: #4a3b28;
+  --ink: #2b2119;
+  --muted: #6f5f4a;
+  --faint: #9c8a72;
+  --oak: #c9b28f;
+  --teal: #3c7779;
+
+  /* Slack 네이티브 UI */
+  --sk-ink: #1d1c1d;
+  --sk-muted: #616061;
+  --sk-line: #e4e2e1;
+  --sk-blue: #1264a3;
+  --sk-blue-bg: #e8f5fa;
+  --sk-green: #007a5a;
+  --sk-amber: #e8912d;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 1600px;
+  /* overflow:hidden 이었으나 브라우저 미리보기에서 스크롤이 막혀 제거.
+     캡쳐는 1600x5000 창으로 찍으므로 영향 없음. 잘라내기는 .slide가 담당. */
+  overflow: visible;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: 'Pretendard', 'AnthropicSans', system-ui, sans-serif;
+}
+
+.slide {
+  position: relative;
+  width: 1600px;
+  height: 1000px;
+  overflow: hidden;
+  padding: 64px 86px 0;
+  background:
+    radial-gradient(58% 42% at 82% 4%, rgba(255, 250, 236, .95) 0%, rgba(255, 250, 236, 0) 62%),
+    radial-gradient(70% 55% at 12% 96%, rgba(214, 226, 199, .40) 0%, rgba(214, 226, 199, 0) 60%),
+    linear-gradient(162deg, var(--paper-top) 0%, var(--paper-mid) 52%, var(--paper-bot) 100%);
+}
+
+/* 은은한 종이 질감 */
+.slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .38;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E");
+}
+
+/* ── 상단 로고 락업 ───────────────────────── */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+.lockup { display: flex; align-items: center; gap: 13px; }
+.lockup img {
+  width: 46px; height: 46px;
+  border-radius: 13px;
+  display: block;
+  box-shadow: 0 2px 10px rgba(90, 65, 35, .16);
+}
+.lockup span {
+  font-family: 'AnthropicSans', sans-serif;
+  font-size: 31px;
+  font-weight: 700;
+  letter-spacing: -.012em;
+  color: var(--brown);
+}
+.idx {
+  font-family: 'AnthropicSans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  color: var(--faint);
+}
+
+/* ── 카피 블록 ───────────────────────────── */
+.copy { position: relative; z-index: 2; margin-top: 46px; }
+.eyebrow {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  color: var(--brown);
+  background: rgba(255, 252, 244, .72);
+  border: 1px solid rgba(119, 96, 63, .16);
+  border-radius: 999px;
+  padding: 7px 16px;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 66px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -.035em;
+  color: var(--ink);
+  word-break: keep-all;
+}
+h1 em { font-style: normal; color: #6b5433; }
+.sub {
+  margin-top: 16px;
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.52;
+  letter-spacing: -.015em;
+  color: var(--muted);
+  word-break: keep-all;
+  max-width: 1080px;
+}
+
+/* ── Slack 창 목업 ───────────────────────── */
+.win {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(70, 52, 32, .10);
+  box-shadow:
+    0 36px 70px -22px rgba(88, 62, 30, .34),
+    0 8px 22px -8px rgba(88, 62, 30, .16);
+  overflow: hidden;
+}
+.win-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  height: 54px;
+  padding: 0 22px;
+  border-bottom: 1px solid var(--sk-line);
+  background: #fff;
+}
+.win-head .ch {
+  font-size: 16.5px; font-weight: 800; color: var(--sk-ink);
+  letter-spacing: -.01em;
+}
+.win-head .hash { color: var(--sk-muted); font-weight: 500; }
+.win-head .meta {
+  font-size: 13px; color: var(--sk-muted); font-weight: 500;
+  padding-left: 11px; margin-left: 3px;
+  border-left: 1px solid var(--sk-line);
+}
+.win-body { padding: 16px 0 18px; }
+
+/* 메시지 */
+.msg { display: flex; gap: 12px; padding: 9px 22px; }
+.msg + .msg { padding-top: 12px; }
+.av {
+  flex: none;
+  width: 38px; height: 38px;
+  border-radius: 9px;
+  display: grid; place-items: center;
+  font-size: 15px; font-weight: 800; color: #fff;
+  letter-spacing: -.02em;
+}
+.av img { width: 38px; height: 38px; border-radius: 9px; display: block; }
+.mbody { flex: 1; min-width: 0; }
+.mhead { display: flex; align-items: baseline; gap: 8px; margin-bottom: 2px; }
+.mname { font-size: 15.5px; font-weight: 800; color: var(--sk-ink); letter-spacing: -.01em; }
+.badge {
+  font-size: 10.5px; font-weight: 800; color: var(--sk-muted);
+  background: #e8e8e8; border-radius: 3px; padding: 1.5px 5px;
+  position: relative; top: -1px;
+}
+.mtime { font-size: 12.5px; color: var(--sk-muted); font-weight: 500; }
+.mtext {
+  font-size: 15.5px; line-height: 1.48; color: var(--sk-ink);
+  letter-spacing: -.008em; word-break: keep-all;
+}
+.mtext strong { font-weight: 800; }
+.mention {
+  color: var(--sk-blue); background: var(--sk-blue-bg);
+  border-radius: 3px; padding: 0 3px; font-weight: 600;
+}
+
+/* 첨부 카드 (Slack attachment) */
+.att {
+  margin-top: 11px;
+  border-left: 4px solid var(--oak);
+  border-radius: 0 8px 8px 0;
+  background: #fbfaf8;
+  padding: 12px 16px 13px;
+  max-width: 660px;
+}
+.att .atitle {
+  font-size: 12.5px; font-weight: 800; color: var(--brown);
+  letter-spacing: .05em; margin-bottom: 5px;
+}
+.att .aline { font-size: 13px; color: var(--sk-muted); font-weight: 500; margin-bottom: 7px; }
+.att .aquote {
+  font-size: 15px; line-height: 1.45; color: var(--sk-ink);
+  font-weight: 600; word-break: keep-all;
+}
+.att .afoot { font-size: 13px; color: var(--sk-muted); margin-top: 8px; font-weight: 500; }
+
+/* 결과 체크 라인 */
+.steps { margin-top: 12px; display: flex; flex-direction: column; gap: 9px; }
+.step {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 15px; color: var(--sk-ink); font-weight: 600;
+  letter-spacing: -.008em;
+}
+.step .dot {
+  flex: none; width: 20px; height: 20px; border-radius: 6px;
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 900; color: #fff;
+  background: var(--sk-green);
+}
+.step .dot.warn { background: var(--sk-amber); }
+.step .dot.file { background: var(--teal); }
+.step .tag {
+  font-size: 12.5px; font-weight: 600; color: var(--sk-muted);
+}
+
+/* 액션 버튼 (Slack 네이티브 스타일 유지) */
+.acts { display: flex; gap: 9px; margin-top: 15px; }
+.btn {
+  font-size: 14px; font-weight: 800; letter-spacing: -.01em;
+  padding: 9px 17px; border-radius: 5px;
+  border: 1px solid #bbbabb; background: #fff; color: var(--sk-ink);
+}
+.btn.primary { background: var(--sk-green); border-color: var(--sk-green); color: #fff; }
+
+/* 리액션 */
+.rx { display: flex; gap: 7px; margin-top: 13px; }
+.rx span {
+  font-size: 13px; font-weight: 700; color: var(--sk-muted);
+  background: #f8f8f8; border: 1px solid #ddd; border-radius: 13px;
+  padding: 3px 10px;
+}
+.rx span.on { background: var(--sk-blue-bg); border-color: #1d9bd1; color: #1264a3; }
+
+/* 입력창 */
+.composer {
+  margin: 14px 22px 0;
+  border: 1px solid #c9c8c7; border-radius: 9px;
+  padding: 13px 15px;
+  font-size: 15.5px; color: #9a9a9a; font-weight: 500;
+}
+
+/* ── 자동 맞춤 컨테이너 ─────────────────────
+   비주얼(목업/그래프/패널)을 남은 세로 공간에 꽉 차게 스케일.
+   JS(fit())가 zoom과 width를 계산해 넣습니다. */
+.fit { position: relative; z-index: 2; margin-top: 34px; }
+.fit > * { margin: 0 auto; }
+
+/* 스택 렌더용: 5장을 세로로 쌓아 한 번에 촬영 후 크롭 */
+.slide { display: block; }
+
+/* 로고 락업 마크: 검정 타일 + 크림 유령 (제품 실제 아바타) */
+.lockup .markimg {
+  width: 46px; height: 46px; border-radius: 13px;
+  background: #141413; display: grid; place-items: center;
+  box-shadow: 0 2px 10px rgba(90, 65, 35, .16);
+}
+.lockup .markimg svg { width: 32px; height: 32px; display: block; }
+
+
+/* ── 미리보기 전용 (?preview=1 일 때만) ──────────────
+   실제 캡쳐 결과에는 영향이 없습니다. */
+html.preview { background: #4a4038; }
+html.preview body { width: auto; display: flex; flex-direction: column;
+                    align-items: center; gap: 28px; padding: 28px 0 60px; }
+html.preview .slide {
+  flex: none;
+  transform: scale(var(--pv, .52));
+  transform-origin: top center;
+  margin-bottom: calc(1000px * (var(--pv, .52) - 1));
+  box-shadow: 0 10px 40px rgba(0,0,0,.45);
+  border-radius: 6px;
+}
+html.preview .pvlabel {
+  color: #e8dfd2; font: 700 15px/1 Pretendard, sans-serif;
+  letter-spacing: .04em; margin-top: 10px;
+}
+
+
+/* ── 다크 슬라이드 (02 공유 기억) ────────────────────
+   5장이 같은 포맷일 필요가 없어서, 이 장만 전면 반전.
+   Slack 창 껍데기 없이 그래프가 화면을 채웁니다. */
+.slide.inverted {
+  background:
+    radial-gradient(68% 60% at 50% 62%, #3d3020 0%, rgba(61,48,32,0) 70%),
+    radial-gradient(40% 40% at 92% 6%, #4a3a24 0%, rgba(74,58,36,0) 62%),
+    linear-gradient(156deg, #2b2118 0%, #1b1510 100%);
+}
+.slide.inverted .lockup span { color: #f0eee6; }
+.slide.inverted h1 { color: #fbf7ef; }
+.slide.inverted h1 em { color: #e2ceac; }
+.slide.inverted .sub { color: #bfae97; }
+
+/* 그래프를 좌우로 꽉 채움 */
+.slide.inverted .fit { margin-top: 30px; }
+.gfull { width: 1600px; margin-left: -86px; }
+.gfull svg { display: block; width: 100%; height: auto; }
+
+
+/* ── 사람 아바타: 라운드 사각형 사진 ────────────────
+   Slack 네이티브 메시지 아바타는 원형이 아니라 라운드 사각형입니다. */
+.av.person { border-radius: 9px; overflow: hidden; padding: 0; background: none; }
+.av.person img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ── 채널 헤더 멤버 아바타 그룹 ────────────────────── */
+.win-head .facepile { display: flex; align-items: center; margin-left: 12px; }
+.win-head .facepile img {
+  width: 26px; height: 26px; border-radius: 7px;
+  object-fit: cover; display: block;
+  border: 2px solid #fff;
+  margin-left: -8px;
+}
+.win-head .facepile img:first-child { margin-left: 0; }
+.win-head .facepile .fmore {
+  margin-left: -8px; width: 26px; height: 26px; border-radius: 7px;
+  background: #efece8; border: 2px solid #fff;
+  display: grid; place-items: center;
+  font-size: 11px; font-weight: 800; color: #6f6155; letter-spacing: -.03em;
+}
