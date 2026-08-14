@@ -223,31 +223,36 @@ const CHANNELS = [
   ['exec-private', '연결 안 함', 0]
 ];
 
+const SECS = [
+  ['연결한 소스만 읽음', '켜둔 채널 밖은 접근하지 않습니다'],
+  ['프로젝트별 접근 분리', '팀 데이터는 각자의 프로젝트 안에만'],
+  ['자격 증명 암호화', 'SOC 2 준비 중']
+];
+
+/* 05 — 리퀴드 글라스. 카드를 하나의 패널이 아니라 개별 유리 조각으로 흩뿌립니다.
+   블러가 보이려면 뒤에 색이 있어야 해서 배경 블롭을 먼저 깝니다. */
 const PERMS = `
-  <div class="permswrap">
-    <div class="win pcard">
-      <div class="win-head">
-        <span class="ch">Ringo가 읽는 채널</span>
-        <span class="meta">팀이 직접 선택합니다</span>
-      </div>
-      <div class="plist">
-        ${CHANNELS.map(([c, d, on]) => `
-        <div class="prow${on ? '' : ' off'}">
-          <div class="pmeta">
-            <div class="pname"><span class="hash">#</span>${c}</div>
-            <div class="pdesc">${d}</div>
-          </div>
-          <div class="tog${on ? ' on' : ''}"><i></i></div>
-        </div>`).join('')}
-      </div>
+  <div class="g5">
+    <div class="blobs" aria-hidden="true">
+      <i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i>
     </div>
 
-    <div class="secbar">
-      ${[['연결한 소스만 읽음', '켜둔 채널 밖은 접근하지 않습니다'],
-         ['프로젝트별 접근 분리', '팀 데이터는 각자의 프로젝트 안에만'],
-         ['자격 증명 암호화', 'SOC 2 준비 중']]
-        .map(([t, d]) => `
-      <div class="secitem">
+    <div class="gcol gleft">
+      <p class="glabel">Ringo가 읽는 채널</p>
+      ${CHANNELS.map(([c, d, on], i) => `
+      <div class="gchip${on ? ' on' : ' off'}" style="--i:${i}">
+        <div class="gtext">
+          <b><span class="hash">#</span>${c}</b>
+          <i>${d}</i>
+        </div>
+        <div class="tog${on ? ' on' : ''}"><span></span></div>
+      </div>`).join('')}
+    </div>
+
+    <div class="gcol gright">
+      <p class="glabel">기본으로 지키는 것</p>
+      ${SECS.map(([t, d], i) => `
+      <div class="gcard" style="--i:${i}">
         <span class="sdot">✓</span>
         <div><b>${t}</b><i>${d}</i></div>
       </div>`).join('')}
@@ -271,37 +276,81 @@ const EXTRA = `
   }
   .gwrap svg { display: block; width: 100%; height: auto; }
 
-  /* 05 권한 패널 — 좌우 반반. 왼쪽 채널 리스트, 오른쪽 보안 항목 모두 세로 나열 */
-  .permswrap { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: stretch; width: 100%; }
-  .pcard { display: flex; flex-direction: column; }
-  .pcard .plist { padding: 4px 0 6px; flex: 1; }
-  .prow { display: flex; align-items: center; justify-content: space-between; padding: 15px 26px; }
-  .prow + .prow { border-top: 1px solid #f1efed; }
-  .pname { font-size: 19px; font-weight: 800; color: var(--sk-ink); letter-spacing: -.01em; }
-  .pname .hash { color: var(--sk-muted); font-weight: 600; margin-right: 1px; }
-  .pdesc { font-size: 15px; color: var(--sk-muted); font-weight: 500; margin-top: 4px; }
-  .prow.off .pname, .prow.off .pdesc { color: #b3afab; }
-  .tog { width: 52px; height: 30px; border-radius: 999px; background: #d8d5d2; position: relative; flex: none; }
-  .tog i { position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%;
-           background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.22); }
-  .tog.on { background: #2f6b45; }
-  .tog.on i { left: 25px; }
+  /* ── 05 리퀴드 글라스 ────────────────────────────
+     유리는 뒤에 색이 있어야 읽히므로 블롭을 먼저 깔고 그 위에 얹습니다. */
+  .g5 { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 44px; width: 100%; }
+  .blobs { position: absolute; inset: -140px -80px; z-index: 0; pointer-events: none; }
+  .blobs i { position: absolute; display: block; border-radius: 50%; filter: blur(58px); }
+  .blobs .b1 { width: 520px; height: 420px; left: 2%;  top: -40px;  background: rgba(201,178,143,.62); }
+  .blobs .b2 { width: 440px; height: 380px; left: 33%; top: 190px;  background: rgba(180,199,160,.48); }
+  .blobs .b3 { width: 480px; height: 400px; right: 6%; top: -20px;  background: rgba(240,196,140,.55); }
+  .blobs .b4 { width: 420px; height: 360px; right: 24%; bottom: -90px; background: rgba(214,164,150,.42); }
 
-  /* 카드 3개가 세로를 균등 분할해서 왼쪽 채널 리스트 카드와 전체 높이가 맞습니다. */
-  .secbar { display: flex; flex-direction: column; gap: 22px; }
-  .secitem {
-    flex: 1;
-    display: flex; align-items: center; gap: 20px;
-    background: rgba(255,252,244,.78);
-    border: 1px solid rgba(119,96,63,.16);
-    border-radius: 20px; padding: 26px 32px;
+  .gcol { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 14px; }
+  .glabel {
+    font-size: 19px; font-weight: 800; letter-spacing: .1em;
+    color: var(--brown); margin: 0 0 8px 8px;
   }
-  .sdot { flex: none; width: 40px; height: 40px; border-radius: 13px;
-          background: rgba(47,107,69,.12); color: #2f6b45;
-          display: grid; place-items: center; font-size: 18px; font-weight: 900; }
-  .secitem b { display: block; font-size: 27px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
-  .secitem i { display: block; font-style: normal; font-size: 21px; font-weight: 500;
-               color: var(--muted); margin-top: 8px; letter-spacing: -.015em; }
+
+  /* 유리 표면 공통 */
+  .gchip, .gcard {
+    background: linear-gradient(142deg, rgba(255,253,248,.80) 0%, rgba(255,251,242,.44) 100%);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255,255,255,.68);
+    box-shadow:
+      0 10px 34px rgba(94,68,34,.14),
+      inset 0 1px 0 rgba(255,255,255,.85);
+  }
+
+  /* 채널 칩: 일부러 어긋나게 배치 */
+  .gchip {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    border-radius: 20px; padding: 19px 24px;
+    margin-left: calc(var(--i) * 17px);
+    margin-right: calc((5 - var(--i)) * 9px);
+  }
+  .gchip.off { opacity: .58; }
+  .gchip .gtext b {
+    display: block; font-size: 21px; font-weight: 800;
+    color: #241c14; letter-spacing: -.02em;
+  }
+  .gchip .gtext b .hash { color: #9c8258; margin-right: 1px; }
+  .gchip .gtext i {
+    display: block; font-style: normal; font-size: 15px; font-weight: 500;
+    color: #6f6053; margin-top: 4px; letter-spacing: -.015em;
+  }
+  .tog {
+    width: 54px; height: 31px; border-radius: 999px; flex: none; position: relative;
+    background: rgba(120,105,88,.28);
+    box-shadow: inset 0 1px 3px rgba(60,44,26,.22);
+  }
+  .tog span {
+    position: absolute; top: 3px; left: 3px; width: 25px; height: 25px;
+    border-radius: 50%; background: #fffdf8;
+    box-shadow: 0 2px 5px rgba(50,36,20,.3);
+  }
+  .tog.on { background: #2f6b45; box-shadow: inset 0 1px 3px rgba(20,60,35,.35); }
+  .tog.on span { left: 26px; }
+
+  /* 보안 카드: 반대 방향으로 어긋나게 */
+  .gright { justify-content: center; }
+  .gcard {
+    display: flex; align-items: center; gap: 20px;
+    border-radius: 24px; padding: 26px 30px;
+    margin-right: calc(var(--i) * 20px);
+    margin-left: calc((2 - var(--i)) * 14px);
+  }
+  .sdot {
+    flex: none; width: 42px; height: 42px; border-radius: 14px;
+    background: rgba(47,107,69,.15); color: #2f6b45;
+    display: grid; place-items: center; font-size: 19px; font-weight: 900;
+  }
+  .gcard b { display: block; font-size: 25px; font-weight: 800; color: #241c14; letter-spacing: -.022em; }
+  .gcard i {
+    display: block; font-style: normal; font-size: 19px; font-weight: 500;
+    color: #6f6053; margin-top: 6px; letter-spacing: -.015em;
+  }
 `;
 
 const slideHtml = s => `
@@ -365,7 +414,13 @@ const FIT_JS = `
 
   /* ?preview=1 로 열면 5장을 한 화면에 축소해서 보여줍니다. */
   function preview() {
-    if (!location.search.includes('preview')) return;
+    /* 브라우저(http/https)로 열면 기본이 축소 보기.
+       PNG 캡쳐는 file:// 로 열므로 항상 원본 1:1 유지 → 결과물에 영향 없음.
+       원본 크기로 보려면 ?full=1 */
+    const served = location.protocol !== 'file:';
+    const wantFull = location.search.includes('full');
+    const wantPreview = location.search.includes('preview');
+    if (!(wantPreview || (served && !wantFull))) return;
     document.documentElement.classList.add('preview');
     const fitScale = () => {
       const s = Math.min(0.9, (window.innerWidth - 80) / 1600);
